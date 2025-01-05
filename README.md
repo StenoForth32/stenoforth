@@ -9,3 +9,7 @@ Stenographic Forth based on SPF-4.29:
 - Reducing the dynamic instrumental context:
    - Static local variables of different types instead of stack permutations
    - Simplifying the use of contextual dictionaries
+
+Получить расширенную форт-систему(Стенографический Forth на основе SPF-4.29) можно следуя указаниям в файле Spf4290.f
+
+You can get the extended forth system (Stenographic Forth based on SPF-4.29) by following the instructions in the file Spf4290.f
