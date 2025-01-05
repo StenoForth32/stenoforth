@@ -1,37 +1,37 @@
-REQUIRE STACK        ~stenoforth\lib\cstack.spf       \ стеки в памяти
+REQUIRE STACK        ~stenoforth\Lib\cstack.spf       \ стеки в памяти
 REQUIRE CASE         lib\ext\case.f                   \ конструкция CASE
 
 REQUIRE {            lib\ext\locals.f                 \ локальные переменные
 REQUIRE NUMBER?      ~mak\lib\fpcnum.f                \ преобразование строк в числа
 REQUIRE LIKE         ~pinka\lib\like.f                \ выделение по маске
 
-REQUIRE M:           ~stenoforth\lib\nf-name.spf      \ макросы, слова-строки
+REQUIRE M:           ~stenoforth\Lib\nf-name.spf      \ макросы, слова-строки
 REQUIRE $!           ~mak\place.f                     \ утилиты для многопроходной компиляции
 
-REQUIRE SEE          ~stenoforth\lib\disasm.spf       \ доработанный SEE(дает размер кода и число инструкций)
+REQUIRE SEE          ~stenoforth\Lib\disasm.spf       \ доработанный SEE(дает размер кода и число инструкций)
 
-REQUIRE 0SQRT        ~stenoforth\assm\mp-assm.spf     \ встроенный постфиксный ассемблер( с зачатками плав.точки)
-REQUIRE IDN          ~stenoforth\assm\sp-assm.spf     \ встроенный трехпроходный ассемблер с метками и коротким синтаксисом для инструкций
+REQUIRE 0SQRT        ~stenoforth\Assm\MP-assm.spf     \ встроенный постфиксный ассемблер( с зачатками плав.точки)
+REQUIRE IDN          ~stenoforth\Assm\SP-assm.spf     \ встроенный трехпроходный ассемблер с метками и коротким синтаксисом для инструкций
 
 REQUIRE CHOOSE       lib\ext\rnd.f                    \ случайный выбор
-REQUIRE randomize    ~stenoforth\lib\nrand.spf        \ модифицированный случайный выбор
+REQUIRE randomize    ~stenoforth\Lib\nrand.spf        \ модифицированный случайный выбор
 REQUIRE F.           lib\include\float2.f             \ вещественные числа
 
-REQUIRE sd.          ~stenoforth\lib\nloc25.spf       \ статические локальные переменные, слова, макросы, строки
-REQUIRE 1-!          ~stenoforth\lib\man-IP.spf       \ расширение
+REQUIRE sd.          ~stenoforth\Lib\nloc25.spf       \ статические локальные переменные, слова, макросы, строки
+REQUIRE 1-!          ~stenoforth\Lib\man-IP.spf       \ расширение
 
-REQUIRE pusto        ~stenoforth\lib\staxy4.spf       \ стековые стяжки - стексы - оптимизация кода стековых перестановок
-REQUIRE sseet        ~stenoforth\lib\seetl.spf        \ измеритель времени исполнения слова при разовом и циклическом его исполнении
+REQUIRE pusto        ~stenoforth\Lib\staxy4.spf       \ стековые стяжки - стексы - оптимизация кода стековых перестановок
+REQUIRE sseet        ~stenoforth\Lib\seetl.spf        \ измеритель времени исполнения слова при разовом и циклическом его исполнении
 
-REQUIRE fpoint       ~stenoforth\lib\w-flo.spf        \ модуль для слов плав.точки
-REQUIRE instructions ~stenoforth\lib\instructions.spf \ модуль слов-инструкций процессора x86
-REQUIRE closure      ~stenoforth\lib\closure.spf      \ расширение для замыканий
+REQUIRE fpoint       ~stenoforth\Lib\w-flo.spf        \ модуль для слов плав.точки
+REQUIRE instructions ~stenoforth\Lib\instructions.spf \ модуль слов-инструкций процессора x86
+REQUIRE closure      ~stenoforth\Lib\closure.spf      \ расширение для замыканий
 
-REQUIRE valuenames   ~stenoforth\lib\c-fix.spf        \ модуль синонимов для сжатия слов для работы с фикс.точкой - разряднось 32
-REQUIRE mfvaluenames ~stenoforth\lib\c-flo.spf        \ модуль синонимов для сжатия слов для работы с плав.точкой
-REQUIRE dsynonyms    ~stenoforth\lib\c-fixd.spf       \ модуль синонимов для сжатия слов для работы с фикс.точкой - разрядность 64
+REQUIRE valuenames   ~stenoforth\Lib\c-fix.spf        \ модуль синонимов для сжатия слов для работы с фикс.точкой - разряднось 32
+REQUIRE mfvaluenames ~stenoforth\Lib\c-flo.spf        \ модуль синонимов для сжатия слов для работы с плав.точкой
+REQUIRE dsynonyms    ~stenoforth\Lib\c-fixd.spf       \ модуль синонимов для сжатия слов для работы с фикс.точкой - разрядность 64
 
-S" g:\spf429\devel\~stenoforth\BIN\spf486.exe" SAVE
+S" g:\spf429\devel\~stenoforth\Bin\spf486.exe" SAVE
 
 BYE
 
