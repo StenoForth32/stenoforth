@@ -18,7 +18,7 @@ REQUIRE randomize    ~stenoforth\lib\nrand.spf        \ модифицирова
 REQUIRE F.           lib\include\float2.f             \ вещественные числа
 
 REQUIRE sd.          ~stenoforth\lib\nloc25.spf       \ статические локальные переменные, слова, макросы, строки
-REQUIRE CinStr       ~stenoforth\lib\man-IP.spf       \ расширение
+REQUIRE 1-!          ~stenoforth\lib\man-IP.spf       \ расширение
 
 REQUIRE pusto        ~stenoforth\lib\staxy4.spf       \ стековые стяжки - стексы - оптимизация кода стековых перестановок
 REQUIRE sseet        ~stenoforth\lib\seetl.spf        \ измеритель времени исполнения слова при разовом и циклическом его исполнении
