@@ -1,0 +1,5 @@
+*.f linguist-language=Forth
+*.4 linguist-language=Forth
+*.th linguist-language=Forth
+*.fth linguist-language=Forth
+*.spf linguist-language=Forth
