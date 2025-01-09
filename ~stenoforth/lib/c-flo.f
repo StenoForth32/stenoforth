@@ -70,9 +70,6 @@ m: fs| {{ fsynonyms ;
 m: |fs }} ;
 ;MODULE
 
-\ : NOTFOUND u! a! a C@ '{' = u 1 > AND 0= IF a u NOTFOUND EXIT THEN
-\ ` fs| a 1+ u 1- aDO I 1 EVALUATE LOOP ` |fs ;
-
 : NOTFOUND u! a! a C@ '{' = u 1 > AND 0= IF a u NOTFOUND EXIT THEN
 ` fs| a 1+ u 1- aDO I C@ 'v' <> IF I 1 EVALUATE 1 ELSE I 2 EVALUATE 2 THEN +LOOP ` |fs ;
 
@@ -91,9 +88,6 @@ m: vf| {{ fvaluenames ;
 m: |vf }} ;
 ;MODULE
 
-\ : NOTFOUND u! a! a C@ ',' = u 1 > AND 0= IF a u NOTFOUND EXIT THEN
-\   ` vf| a 1+ a 1+ u + 2- DO I 1 EVALUATE -1 +LOOP ` |vf ;
-
 : NOTFOUND u! a! a C@ ',' = u 1 > AND 0= IF a u NOTFOUND EXIT THEN
   ` vf| a 1+ a 1+ u + 2- DO I 1- C@ 'v' <> IF I 1 EVALUATE -1 ELSE I 1- 2 EVALUATE -2 THEN +LOOP ` |vf ;
 
@@ -110,9 +104,6 @@ EXPORT
 m: mvf| {{ mfvaluenames ;
 m: |mvf }} ;
 ;MODULE
-
-\ : NOTFOUND u! a! a C@ ';' = u 1 > AND 0= IF a u NOTFOUND EXIT THEN
-\   ` mvf| a 1+ a 1+ u + 2- DO I 1 EVALUATE -1 +LOOP ` |mvf ;
 
 : NOTFOUND u! a! a C@ ';' = u 1 > AND 0= IF a u NOTFOUND EXIT THEN
   ` mvf| a 1+ a 1+ u + 2- DO I 1- C@ 'v' <> IF I 1 EVALUATE -1 ELSE I 1- 2 EVALUATE -2 THEN +LOOP ` |mvf ;
