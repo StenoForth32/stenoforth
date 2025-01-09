@@ -10,7 +10,7 @@ m: f ENDOF ;                        m: F FILL ;                        m: ~ INVE
 m: g rnd ;                          m: G aDO ;                         m: | OR ;
 m: h HERE ;                         m: H WITHIN ;                      m: % MOD ;
 m: i 1+ ;                                                              m: : to ;
-m: j 1- ;                                                              \ m: ; EXIT
+m: j 1- ;                                                              m: ; EXIT
 m: k KEY ;                          m: K COMPARE ;
 m: l LSHIFT ;                       m: L LOOP ;
 m: m MIN ;                          m: M MAX ;
