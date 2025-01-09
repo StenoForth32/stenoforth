@@ -19,4 +19,5 @@ m: DINVERT ( d1 -- d2 )    @P~ A~ ;
 m: DLSHIFT ( d n -- 'd ) $ 4 D=@P $ 20 C=# C-A D>> C=A @P<< $ 4 @P<< @P|D DROP ;
 m: DRSHIFT ( d n -- 'd ) D=@P $ 20 C=# C-A D<< C=A @P>> $ 4 @P>> $ 4 @P|D DROP ;
 : D0<>     ( d -- f ) D0= INVERT ;
+m: -!      ( n addr -- ) D=@P -D @A+D $ 4 A=@P $ 8 Pa  ;
 m: 1-!     ( addr --) @A-- DROP ;

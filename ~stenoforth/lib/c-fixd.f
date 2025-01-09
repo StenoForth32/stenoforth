@@ -9,7 +9,9 @@ m: e ELSE ;
 m: f F>D ;
 \ g
 m: h HERE ;
-\ i j k
+m: i 1+! ;
+m: j 1-! ;
+\ k
 m: l DLSHIFT ;
 \ m
 m: n DNEGATE ;
@@ -28,6 +30,8 @@ m: B .0b ;
 m: D ?DO ;
 m: F FREE THROW ;
 m: H .0h ;
+m: I +! ;
+m: J -! ;
 m: R RESIZE THROW ;
 m: G aDO ;
 m: L LOOP ;
