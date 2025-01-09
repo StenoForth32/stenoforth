@@ -222,6 +222,5 @@ m: |i ] }}  ;
 \EOF сумма квадратов
 : ssq i| *t 0 B=c B*B t+B 4 Pa |i ;
 SEE ssq
-\ 3 4 ssq
 
-\ : Ssq  i| >t=D t=LE t=G 4 GB=c |i ; SEE Ssq
+
