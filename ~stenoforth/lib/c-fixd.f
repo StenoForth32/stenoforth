@@ -69,12 +69,6 @@ m: sd| {{ dsynonyms ;
 m: |sd }} ;
 ;MODULE
 
-\ : NOTFOUND u! a! a W@ 's:' = 0= IF a u NOTFOUND EXIT THEN ` s| a 2+ u 2- SFIND DROP ` EXECUTE ;
-\ : NOTFOUND u! a! a u + 2- W@ ':s' = 0= IF a u NOTFOUND EXIT THEN ` s| a u 2- SFIND DROP ` EXECUTE ` |s ;
-
-\ : NOTFOUND u! a! a C@ '"' = u 1 > AND 0= IF a u NOTFOUND EXIT THEN
-\ ` sd| a 1+ u 1- aDO I 1 EVALUATE LOOP ` |sd ;
-
 : NOTFOUND u! a! a C@ '"' = u 1 > AND 0= IF a u NOTFOUND EXIT THEN
 ` sd| a 1+ u 1- aDO I C@ 'v' <> IF I 1 EVALUATE 1 ELSE I 2 EVALUATE 2 THEN +LOOP ` |sd ;
 
@@ -91,9 +85,6 @@ EXPORT
 m: vd| {{ dvaluenames ;
 m: |vd }} ;
 ;MODULE
-
-\ : NOTFOUND u! a! a W@ 'd!' = u 2 > AND 0= IF a u NOTFOUND EXIT THEN
-\  ` vd| a 2+ a 2+ u + 3 - DO I 1 ( 2 ) EVALUATE -1 ( -2) +LOOP ` |vd ;
 
 : NOTFOUND u! a! a W@ 'd!' = u 2 > AND 0= IF a u NOTFOUND EXIT THEN
   ` vd| a 2+ a 2+ u + 3 - DO I 1- C@ 'v' <> IF I 1 EVALUATE -1 ELSE I 1- 2 EVALUATE -2 THEN +LOOP ` |vd ;
