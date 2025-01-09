@@ -1,4 +1,5 @@
 \ stenoforth32
+
 m: lit:  : NOTFOUND | a! u! | ;
 m: rec:  ;
 m: gen:  0= IF a u NOTFOUND EXIT THEN ;
