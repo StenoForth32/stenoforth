@@ -34,9 +34,6 @@ m: s| {{ syn-fixpoint ;
 m: |s }} ;
 ;MODULE
 
-\ : NOTFOUND u! a! a W@ 's:' = 0= IF a u NOTFOUND EXIT THEN ` s| a 2+ u 2- SFIND DROP ` EXECUTE ;
-\ : NOTFOUND u! a! a u + 2- W@ ':s' = 0= IF a u NOTFOUND EXIT THEN ` s| a u 2- SFIND DROP ` EXECUTE ` |s ;
-
 : NOTFOUND u! a! a C@ '[' = u 1 > AND 0= IF a u NOTFOUND EXIT THEN
 ` s| a 1+ u 1- aDO I C@ 'v' <> IF I 1 EVALUATE 1 ELSE I 2 EVALUATE 2 THEN +LOOP ` |s ;
 
