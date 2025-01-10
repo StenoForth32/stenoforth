@@ -1,7 +1,7 @@
 REQUIRE STACK        ~stenoforth\lib\cstack.spf       \ стеки в памяти
 REQUIRE CASE         lib\ext\case.f                   \ конструкция CASE
 
-REQUIRE {            lib\ext\locals.f                 \ локальные переменные
+REQUIRE {             ~mak\locals4.f                  \ локальные переменные
 REQUIRE NUMBER?      ~mak\lib\fpcnum.f                \ преобразование строк в числа
 REQUIRE LIKE         ~pinka\lib\like.f                \ выделение по маске
 
