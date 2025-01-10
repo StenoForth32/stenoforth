@@ -82,3 +82,29 @@ S" 123456789" s-invv TYPE
     {t ;
 
  CR 2e 6e -3e x12
+
+ \ сравнение быстродействия локальных переменных и многопоточных стат. лок. переменных
+\ из трех верхних чисел на стеке оставить одно число - строго среднее и TRUE
+\ (оно дб больше одного и меньше другого), в противном случае 0 и FALSE
+
+\ a b c -- middle
+: mid { a b c }
+  a b = a c = OR b c = OR
+  IF 0 0 EXIT ELSE a b + c +
+  a b MAX c MAX - a b MIN c MIN -
+  TRUE THEN
+;
+
+: mid1 :123
+  [12=13=|23=|
+  [?yy;e12+3+
+  [12M3M-12m3m-
+  [Tt
+;
+
+: t1 100000 0 DO 1 2 3 mid  2DROP LOOP ;
+: t2 100000 0 DO 1 2 3 mid1 2DROP LOOP ;
+
+SEET t1 SEET t1
+SEET t2 SEET t2
+
