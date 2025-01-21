@@ -7,18 +7,22 @@ m: c FCOS ;
 m: d FDUP ;
 m: e ELSE ;
 m: f DS>F ;
-m: g rnd ;
+m: g FLOG ;
 m: h HERE ;
-\ i j k l
+m: i F1+ ;
+m: j 1e F- ;
+m: k FACOS ;
+m: l FLN ;
 m: m FMIN ;
 m: n FNEGATE ;
 m: o FDEPTH ;
 m: p F**2 ;
 m: q FSQRT ;
-m: r randomize ;
+m: r FASIN ;
 m: s FSIN ;
 m: t THEN ;
-\  u v w
+m: u FATAN ;
+\ v w
 m: x FDROP ;
 m: y $ -4 @P=A A^A $ -4 Pa ; \ 0
 m: z F0= INVERT ;    \ F0<>
