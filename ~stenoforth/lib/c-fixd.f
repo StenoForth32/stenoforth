@@ -3,7 +3,7 @@
 MODULE: dsynonyms
 m: a DABS ;
 m: b W@ ;
-\ c
+m: c EMIT ;
 m: d 2DUP ;
 m: e ELSE ;
 m: f F>D ;
@@ -13,9 +13,11 @@ m: i 1+! ;
 m: j 1-! ;
 \ k
 m: l DLSHIFT ;
-\ m
+m: m -! ;
 m: n DNEGATE ;
-\ o p q
+\ o
+m: p +! ;
+\ q
 m: r DRSHIFT ;
 m: s SPACE ;
 m: t THEN ;
@@ -29,16 +31,21 @@ m: A ALLOCATE THROW ;
 m: B .0b ;
 m: D ?DO ;
 m: F FREE THROW ;
-m: H .0h ;
-m: I +! ;
-m: J -! ;
-m: R RESIZE THROW ;
 m: G aDO ;
+m: H .0h ;
+\ K
 m: L LOOP ;
+\ M
 m: N +LOOP ;
 m: O .0 ;
+m: P NextWord ;
+\ Q
+m: R RESIZE THROW ;
+\ S
 m: T TYPE ;
+\ U
 m: V MOVE ;
+\ W X
 m: Y 1. ;
 m: Z D0= ;
 

@@ -20,7 +20,7 @@ m: s FSIN ;
 m: t THEN ;
 \  u v w
 m: x FDROP ;
-m: y $ -4 @P=A A^A $ -4 Pa ;
+m: y $ -4 @P=A A^A $ -4 Pa ; \ 0
 m: z F0= INVERT ;    \ F0<>
 
 m: A AGAIN ;
@@ -43,7 +43,7 @@ m: T FTAN ;
 m: U UNTIL ;
 m: W WHILE ;
 m: X EXP ;
-m: Y $ -4 @P=A $ 1 A=# $ -4 Pa ;
+m: Y $ -4 @P=A $ 1 A=# $ -4 Pa ;  \ 1
 m: Z F0= ;
 
 m: @ F@ ;
@@ -87,6 +87,7 @@ EXPORT
 m: vf| {{ fvaluenames ;
 m: |vf }} ;
 ;MODULE
+
 
 : NOTFOUND u! a! a C@ ',' = u 1 > AND 0= IF a u NOTFOUND EXIT THEN
   ` vf| a 1+ a 1+ u + 2- DO I 1- C@ 'v' <> IF I 1 EVALUATE -1 ELSE I 1- 2 EVALUATE -2 THEN +LOOP ` |vf ;

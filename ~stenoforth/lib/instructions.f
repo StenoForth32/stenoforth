@@ -60,6 +60,9 @@ MODULE: instructions
 : t=bt   0xBE0F W, 0xC0 C, ;
 : t=t*#  0xC069 W, , ;
 
+: @=t    0x0589 W, , ;
+: t=@    0x058D W, , ;
+
 : B=GE   0x9D0F W, 0xC3 C, ;
 : B=LE   0x9E0F W, 0xC3 C, ;
 : B=t    0xD88B W, ;
