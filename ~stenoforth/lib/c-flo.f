@@ -78,12 +78,12 @@ m: |fs }} ;
 ` fs| a 1+ u 1- aDO I C@ 'v' <> IF I 1 EVALUATE 1 ELSE I 2 EVALUATE 2 THEN +LOOP ` |fs ;
 
 MODULE: fvaluenames
-m: a a, ; m: b b, ; m: c c, ; m: d d, ; m: e e, ; m: f f, ; m: g g, ; m: h h, ; m: i i, ; m: j j, ;
-m: k k, ; m: l l, ; m: m m, ; m: n n, ; m: o o, ; m: p p, ; m: q q, ; m: r r, ; m: s s, ; m: t t, ;
-m: u u, ; m: v v, ; m: w w, ; m: x x, ; m: y y, ; m: z z, ;
-m: G G, ; m: H H, ;
-m: K K, ; m: L L, ; m: M M, ; m: N N, ; m: O O, ; m: P P, ; m: Q Q, ; m: R R, ; m: S S, ; m: T T, ;
-m: U U, ; m: V V, ; m: W W, ; m: X X, ; m: Y Y, ; m: Z Z, ;
+m: a a, ; m: d d, ; m: e e, ; m: f f, ; m: g g, ; m: h h, ; m: i i, ; m: j j, ;
+m: k k, ; m: l l, ; m: m m, ; m: n n, ; m: o o, ; m: p p, ; m: q q, ; m: r r, ; m: t t, ;
+m: u u, ; m: v v, ; m: x x, ; m: y y, ; m: z z, ;
+m: A A, ; m: D D, ; m: E E, ; m: F F, ; m: G G, ; m: H H, ;
+m: K K, ; m: L L, ; m: M M, ; m: N N, ; m: O O, ; m: P P, ; m: Q Q, ; m: R R, ; m: T T, ;
+m: U U, ; m: V V, ; m: X X, ; m: Y Y, ; m: Z Z, ;
 m: 1 Г, ; m: 2 Д, ; m: 3 Е, ; m: 4 Ё, ; m: 5 Ж, ; m: 6 З, ; m: 7 И, ; m: 8 Й, ; m: 9 К, ;
 m: v1 Л, ; m: v2 М, ; m: v3 Н, ; m: v4 О, ; m: v5 П, ; m: v6 Р, ; m: v7 С, ; m: v8 Т, ; m: v9 У, ;
 
@@ -100,7 +100,7 @@ MODULE: mfvaluenames
 m: a a; ; m: b b; ; m: c c; ; m: d d; ; m: e e; ; m: f f; ; m: g g; ; m: h h; ; m: i i; ; m: j j; ;
 m: k k; ; m: l l; ; m: m m; ; m: n n; ; m: o o; ; m: p p; ; m: q q; ; m: r r; ; m: s s; ; m: t t; ;
 m: u u; ; m: v v; ; m: w w; ; m: x x; ; m: y y; ; m: z z; ;
-m: G G; ; m: H H; ;
+m: A A; ; m: B B; ; m: C C; ; m: D D, ; m: E E, ; m: F F, ; m: G G; ; m: H H; ;
 m: K K; ; m: L L; ; m: M M; ; m: N N; ; m: O O; ; m: P P; ; m: Q Q; ; m: R R; ; m: S S; ; m: T T; ;
 m: 1 Г; ; m: 2 Д; ; m: 3 Е; ; m: 4 Ё; ; m: 5 Ж; ; m: 6 З; ; m: 7 И; ; m: 8 Й; ; m: 9 К; ;
 m: v1 Л; ; m: v2 М; ; m: v3 Н; ; m: v4 О; ; m: v5 П; ; m: v6 Р; ; m: v7 С; ; m: v8 Т; ; m: v9 У; ;

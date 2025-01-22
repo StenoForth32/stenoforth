@@ -89,9 +89,9 @@ m: |c  }} ;
 
 1,5  20,0  0,3  Объём
 
-: Streug  a, b, c,  \ -- S
-  f| a b + c + 2e / p,
-  p a - p b - * p c - * p * sqrt . |f
+: Streug  x, y, z,  \ -- S
+  f| x y + z + 2e / p,
+  p x - p y - * p z - * p * sqrt . |f
 ;
 
 12,3 23,4 34,5 Streug
