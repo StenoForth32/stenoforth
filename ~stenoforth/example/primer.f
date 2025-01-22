@@ -15,32 +15,32 @@
 
 \ fix point
 : sum-sq   DUP * SWAP DUP * + ;
-: sum-sq0  | a! b! | a a * b b * + ;
-: sum-sq1  !ab  a a * b b * + ;
+: sum-sq0  | x! y! | x x * y y * + ;
+: sum-sq1  !xy  x x * y y * + ;
 : sum-sq2  !12 [11*22+ ;
 
 \ float point
 : sum-sq3  FDUP F* FSWAP FDUP F* F+ ;
 : sum-sq4  f| dup  * swap dup * + |f ;
-: sum-sq5  | a, b, | f| a a * b b * + |f ;
-: sum-sq6  ,ab f| a a * b b * + |f ;
+: sum-sq5  | x, y, | f| x x * y y * + |f ;
+: sum-sq6  ,xy f| x x * y y * + |f ;
 : sum-sq7  ,12  {11*22+ ;
 
 \ Площадь треугольника по Герону
 \ a b c -- S3
 
 \ fix point
-: S3   | a! b! c! | a b c + + 2/ p!
-       p a - p b - * p c - * p * sqrt ;
-: S31  !abc a b c + + 2/ p!
-       p a - p b - * p c - * p * sqrt ;
+: S3   | x! y! z! | x y z + + 2/ p!
+       p x - p y - * p z - * p * sqrt ;
+: S31  !xyz x y z + + 2/ p!
+       p x - p y - * p z - * p * sqrt ;
 : S32  !123 [123++ 2/ !4 [41-42-*43-*4*q ;
 
 \ float point
-: S33  | a, b, c, | f| a b c + + 2/ p!
-       p a - p b - * p c - * p * sqrt |f ;
-: S34  ,abc f| a b c + + 2/ p!
-       p a - p b - * p c - * p * sqrt |f ;
+: S33  | x, y, z, | f| x y z + + 2/ p!
+       p x - p y - * p z - * p * sqrt |f ;
+: S34  ,xyz f| x y z + + 2/ p!
+       p x - p y - * p z - * p * sqrt |f ;
 : S35  ,123 {123++ 2e {/ ,4 {41-42-*43-*4*q ;
 
 \ стековые перестановки
@@ -69,7 +69,7 @@ S" 123456789" s-invv TYPE
 
 \ Решение квадратного уравнения ax**2+bx+c=0
 \ D=b**2-4ac  [ D>0  x1=(-b+sqrtD)/2a x2=(-b-sqrtD)/2a ]
-\             [ D=0  x1=-b/2a ] [ D<0  нет корней ]          
+\             [ D=0  x1=-b/2a ] [ D<0  нет корней ]
 
 \       abc                D
 : x12  ,123 {2p 4e {13**- ,4
@@ -82,29 +82,3 @@ S" 123456789" s-invv TYPE
     {t ;
 
  CR 2e 6e -3e x12
-
-\ сравнение быстродействия локальных переменных и многопоточных стат. лок. переменных
-\ из трех верхних чисел на стеке оставить одно число - строго среднее и TRUE
-\ (оно дб больше одного и меньше другого), в противном случае 0 и FALSE
-
-\ a b c -- middle
-: mid { a b c }
-  a b = a c = OR b c = OR
-  IF 0 0 EXIT ELSE a b + c +
-  a b MAX c MAX - a b MIN c MIN -
-  TRUE THEN
-;
-
-: mid1 :123
-  [12=13=|23=|
-  [?yy;e12+3+
-  [12M3M-12m3m-
-  [Tt
-;
-
-: t1 100000 0 DO 1 2 3 mid  2DROP LOOP ;
-: t2 100000 0 DO 1 2 3 mid1 2DROP LOOP ;
-
-SEET t1 SEET t1
-SEET t2 SEET t2
-
