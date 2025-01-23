@@ -64,7 +64,7 @@ m: repeat REPEAT
 m: exit EXIT ;
 m: do DO ;
 m: ?do ?DO ;
-m: aDO ado ;
+m: ado aDO ;
 m: i+ I+ ;
 m: leave LEAVE ;
 m: unloop UNLOOP ;
@@ -104,7 +104,6 @@ m: code CODE ;
 m: end-code END-CODE ;
 m: ret, RET, ;
 m: :noname :NONAME ;
-m: to TO ;
 m: erase ERASE ;
 m: fill FILL ;
 m: compare COMPARE ;
