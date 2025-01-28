@@ -31,6 +31,7 @@ REQUIRE valuenames   ~stenoforth\lib\c-fix.f          \ модуль синон�
 REQUIRE mfvaluenames ~stenoforth\lib\c-flo.f          \ модуль синонимов для сжатия слов для работы с плав.точкой
 REQUIRE dsynonyms    ~stenoforth\lib\c-fixd.f         \ модуль синонимов для сжатия слов для работы с фикс.точкой - разрядность 64
 REQUIRE immediate    ~stenoforth\lib\w-fix.f
+REQUIRE fprim        ~stenoforth\lib\r-flo.f
 S" g:\spf429\devel\~stenoforth\bin\spf486.exe" SAVE
 
 BYE
