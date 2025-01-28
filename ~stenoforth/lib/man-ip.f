@@ -7,7 +7,8 @@ m: I+  ( n -- )  R@ + RP@ ! ; \ макрос - увеличение счетчи
 : .0h ( n -- ) HEX .0 DECIMAL ;
 : .BL ( n -- ) >R 0 <# #S #> R> OVER - 0 MAX DUP IF 0 DO BL EMIT LOOP ELSE DROP THEN TYPE ;
 
-: sqrt ( n -- sqrt ) C=A $ -4 @P=A $ -4 0=@P 0SQRT $ -4 @P=0- $ -4 A=@P B=A *A C=A? L1 J>= B-- L1: A=B ;
+: sqrt DS>F FSQRT F>DS ;
+\ : sqrt ( n -- sqrt ) C=A $ -4 @P=A $ -4 0=@P 0SQRT $ -4 @P=0- $ -4 A=@P B=A *A C=A? L1 J>= B-- L1: A=B ;
 
 : D*  D>F D>F F* F>D ;
 : D/  2SWAP D>F D>F F/ F>D ;
