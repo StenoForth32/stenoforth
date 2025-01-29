@@ -1,6 +1,6 @@
 \ stenoforth32
 
-: SEET ' xt! 0. tics!d 0 ns! 0. mcs! ms! 0. t1!d 0. t2!d
+: (SEET) xt! 0. tics!d 0 ns! 0. mcs! ms! 0. t1!d 0. t2!d
 DAC=TSCP DUP A=D to t1 A=C DUP to ns
 \ DUP DROP DUP DROP DUP DROP
 DAC=TSCP DUP A=D to t2 A=C DUP to ms
@@ -35,4 +35,6 @@ ns mcs  1000 * - . ." nsec " CR
 CR
 S0 @ SP!
 ;
+: SEET ' (SEET) ;
+: seet ' (SEET) ;
 : sseet ;
