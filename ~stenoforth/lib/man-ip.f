@@ -25,14 +25,13 @@ m: I+  ( n -- )  R@ + RP@ ! ; \ макрос - увеличение счетчи
 
 \ убрать со стека n байтов
 : SPDROP ( p*n n -- )
-  CELLS P+A DROP
+  P+A DROP
 ;
 \ переместить n байтов со стека в память
 : SPMOVE ( p*n addr n -- p*n )
-  CELLS $ 4 B=aP D=A D+@P
+  $ 4 B=aP D=A D+@P
   L1: $ -4 Da C=@B @D=C $ 4 Ba $ 4 A-#
   L1 J0<> 2DROP
 ;
-
-: SP>MEM ( p*n addr n -- )
-  TUCK SPMOVE SPDROP ;
+\ a n -- a n
+: SP>MEM CELLS { a n } a n SPMOVE n SPDROP a n ;
