@@ -67,6 +67,7 @@ m: ?do ?DO ;
 m: ado aDO ;
 m: i+ I+ ;
 m: i I ;
+m: j J ;
 m: leave LEAVE ;
 m: unloop UNLOOP ;
 m: loop LOOP ;
