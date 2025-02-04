@@ -116,7 +116,7 @@ USER st-wr  0 st-wr !
   +
   THEN
   locxt @ 0<> IF 0 locxt ! LIT, ELSE typ 1 =
-  IF DP @ st-wr @ IF 12 ELSE 11 THEN MOVE DP @ st-wr @ IF 12 ELSE 11 THEN + DP ! ELSE COMPILE, THEN 0 st-wr !
+  IF DP @ st-wr @ IF 12 ELSE 11 THEN MOVE DP @ st-wr @ IF 12 ELSE 11 THEN + DP ! ELSE COMPILE, THEN THEN 0 st-wr !
 ;
 \ переменные однопоточные
 : NOTFOUND ( a u --  ) \ 2variable variable    name)

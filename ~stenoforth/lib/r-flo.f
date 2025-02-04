@@ -1,42 +1,45 @@
-: fabs    FABS ;
-: flog2   FLOG2 ;
-: fcos    FCOS ;
-: fdup    FDUP ;
-: fswap   FSWAP ;
-: ds>f    DS>F ;
-: flog    FLOG ;
-: f1+     F1+ ;
-: f1-     1e F- ;
-: facos   FACOS ;
-: fln     FLN ;
-: fmin    FMIN ;
-: fnegate FNEGATE ;
-: fdepth  FDEPTH ;
-: f**2    F**2 ;
-: fsqrt   FSQRT ;
-: fasin   FASIN ;
-: fsin    FSIN ;
-: fatan   FATAN ;
-: fdrop   FDROP ;
-: f0<>    F0= INVERT ;
-: d>f     D>F ;
-: fmax    FMAX ;
-: fpi     FPI ;
-: f>ds    F>DS ;
-: ftan    FTAN ;
-: exp     EXP ;
-: f0=     F0= ;
-: f@      F@ ;
-: f!      F! ;
-: f+      F+ ;
-: f-      F- ;
-: f*      F* ;
-: f/      F/ ;
-: f=      F= ;
-: f<>     F= INVERT ;
-: f<      F< ;
-: f>      F< F= OR 0= ;
-: f~      F~ ;
-: f**     F** ;
-: f.      F. ;
-: fprim ;
+: F1-  1e F- ;
+: F0<> F0= INVERT ;
+: F<>  F= INVERT ;
+: F>   F< F= OR 0= ;
+SYNONYM fabs    FABS
+SYNONYM flog2   FLOG2
+SYNONYM fcos    FCOS
+SYNONYM fdup    FDUP
+SYNONYM fswap   FSWAP
+SYNONYM ds>f    DS>F
+SYNONYM flog    FLOG
+SYNONYM f1+     F1+
+SYNONYM f1-     F1-
+SYNONYM facos   FACOS
+SYNONYM fln     FLN
+SYNONYM fmin    FMIN
+SYNONYM fnegate FNEGATE
+SYNONYM fdepth  FDEPTH
+SYNONYM f**2    F**2
+SYNONYM fsqrt   FSQRT
+SYNONYM fasin   FASIN
+SYNONYM fsin    FSIN
+SYNONYM fatan   FATAN
+SYNONYM fdrop   FDROP
+SYNONYM f0<>    F0<>
+SYNONYM d>f     D>F
+SYNONYM fmax    FMAX
+SYNONYM fpi     FPI
+SYNONYM f>ds    F>DS
+SYNONYM ftan    FTAN
+SYNONYM exp     EXP
+SYNONYM f0=     F0=
+SYNONYM f@      F@
+SYNONYM f!      F!
+SYNONYM f+      F+
+SYNONYM f-      F-
+SYNONYM f*      F*
+SYNONYM f/      F/
+SYNONYM f=      F=
+SYNONYM f<>     F<>
+SYNONYM f<      F<
+SYNONYM f>      F>
+SYNONYM f~      F~
+SYNONYM f**     F**
+SYNONYM f.      F.
