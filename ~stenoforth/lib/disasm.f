@@ -1600,10 +1600,6 @@ DUP FIND-REST-END ['] REST-AREA CATCH DROP ;
     ' DUP WordByAddr CR CR ." CODE " TYPE (SEE)
   \  DUP FIND-REST-END ['] REST-AREA CATCH DROP
 ;
-: see ( "name" -- )
-    ' DUP WordByAddr CR CR ." code " TYPE (SEE)
-  \  DUP FIND-REST-END ['] REST-AREA CATCH DROP
-;
 
 PREVIOUS
 
