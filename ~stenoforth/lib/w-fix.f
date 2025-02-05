@@ -136,3 +136,6 @@ SYNONYM abort" ABORT"
 SYNONYM nextword NextWord
 SYNONYM parse-name PARSE-NAME
 SYNONYM parse PARSE
+SYNONYM see SEE
+SYNONYM seet SEET
+
