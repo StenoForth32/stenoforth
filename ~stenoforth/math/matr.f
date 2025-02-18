@@ -43,7 +43,7 @@
 ;
 \ определить число десятичных цифр в числе
 \ n -- k
-: zrd  n! 1 k!
+: zrd n! 1 k!
   begin n 10 / dup 0=
    if drop k exit else -> n k 1+ -> k then
   again
@@ -66,6 +66,39 @@
   st 0 do cr co 0 do co j * i + 4 * a + @ mmt .m
   loop loop
 ;
+\ Сложение и вычитание матриц
+\ реализуется очень просто.
+\ a1 u1 a2 u2 --
+m: beg[+-]  !auAU
+   a u + dup 8 - @ c1! 4 - @ s1!
+   A U + dup 8 - @ c2! 4 - @ s2!
+   c1 c2 = s1 s2 = and 0=
+   if ." invalid format" exit then
+   u 8 - 0 do i a + @ i A + @
+;
+\ -- a3 u1
+m: end[+-]  4 +loop c1 s1 u 4 / n>dh ;
+
+: [+] beg[+-] + end[+-] ;
+: [-] beg[+-] - end[+-] ;
+
+\ Операции над матрицей и числом
+\ аналогичны операциям над массивом и числом
+\ n a u --
+m: argn !nau ;
+\ a u n --
+m: argo !aun ;
+\ --
+m: begn u 8 - 0 do i a + @ n ;
+\ -- a1 u
+m: endn 4 +loop a u + 8 - @ a u + 4 - @ u 4 / n>dh ;
+
+: [n+] argn begn + endn ;
+: [n-] argn begn - endn ;
+: [n*] argn begn * endn ;
+: [+n] argo begn + endn ;
+: [-n] argo begn - endn ;
+: [*n] argo begn * endn ;
 
 \EOF
 
@@ -100,4 +133,12 @@ m(  1   1 )
 ((  5  50 )
 ((  6   6 )
 
-[*] [type]
+[*] [type] cr
+
+m( 1 2 )
+(( 3 4 )
+
+m( 2 3 )
+(( 4 5 )
+
+[+] [type] cr
