@@ -43,7 +43,7 @@
 ;
 \ определить число десятичных цифр в числе
 \ n -- k
-: zrd dup n! 1 k!
+: zrd  n! 1 k!
   begin n 10 / dup 0=
    if drop k exit else -> n k 1+ -> k then
   again
