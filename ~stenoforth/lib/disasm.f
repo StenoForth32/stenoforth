@@ -1517,15 +1517,15 @@ OPS  LOK ??? RPZ REP  HLT CMC F6. F6.  CLC STC CLI STI  CLD STD FE. FF.  \ F
         THEN    NEXT-INST C@ 0xE8 =
                 IF  NEXT-INST 1+ @+ SWAP +
                     CASE
-                   ['] _CLITERAL-CODE OF  X".   ENDOF
-                   ['] _SLITERAL-CODE OF  X".   ENDOF
-                   ['] _VECT-CODE     OF  VECT. 2DROP RDROP ENDOF
-                   ['] _CONSTANT-CODE OF  CONS. DROP RDROP ENDOF
-                   ['] _USER-CODE     OF  USER. DROP RDROP ENDOF
-                   ['] _CREATE-CODE   OF  CODE. DROP RDROP ENDOF
-                   ['] _USER-VALUE-CODE OF UVAL. ENDOF
-                   ['] _FLIT-CODE10   OF  FLIT10. ENDOF
-                   ['] _FLIT-CODE8    OF  FLIT8. ENDOF
+                   ['] _CLITERAL-CODE   OF  X".               ENDOF
+                   ['] _SLITERAL-CODE   OF  X".               ENDOF
+                   ['] _VECT-CODE       OF  VECT. 2DROP RDROP ENDOF
+                   ['] _CONSTANT-CODE   OF  CONS. DROP RDROP  ENDOF
+                   ['] _USER-CODE       OF  USER. DROP RDROP  ENDOF
+                   ['] _CREATE-CODE     OF  CODE. DROP RDROP  ENDOF
+                   ['] _USER-VALUE-CODE OF  UVAL.             ENDOF
+                   ['] _FLIT-CODE10     OF  FLIT10.           ENDOF
+                   ['] _FLIT-CODE8      OF  FLIT8.            ENDOF
                     ENDCASE
                 THEN  ;
 
@@ -1569,8 +1569,12 @@ VARIABLE  COUNT-LINE
                         \ We do not look for JMP's because there may be
                          \ a jump in a forth word
                         CR
-                        OVER 0= IF  NEXT-INST C@ 0xC3 = NEXT-INST 1+ C@ 0x55 = NEXT-INST 1+ C@ 0x33 = OR NEXT-INST 1+ C@ 0xAF = OR
-                        AND 0= \ **** end
+                        OVER 0= IF ( NEXT-INST C@ 0xC3 <> )
+                                     NEXT-INST    C@ 0xC3 = DUP IF KEY DROP THEN
+                                     NEXT-INST 1+ C@ 0x55 =
+                                     NEXT-INST 1+ C@ 0x33 = OR
+                                     NEXT-INST 1+ C@ 0xAF = OR
+                                     AND 0= \ **** end
                                 ELSE 2DUP < INVERT
                                 THEN
                 WHILE   INST CNT-INST 1+ TO CNT-INST
@@ -1593,14 +1597,30 @@ VARIABLE  COUNT-LINE
 : REST ( addr -- )
     DUP HERE U> 0=  HERE 1- AND REST-AREA
 ;
-: (SEE) ( CFA --)
+I: (SEE) ( CFA --)
 DUP FIND-REST-END ['] REST-AREA CATCH DROP ;
 
 : SEE       ( "name" -- )
-    ' DUP WordByAddr CR CR ." CODE " TYPE (SEE)
+    ' DUP WordByAddr CR CR ." CODE " TYPE ` (SEE)
   \  DUP FIND-REST-END ['] REST-AREA CATCH DROP
 ;
 
+\ : see       ( "name" -- )
+\     ' DUP WordByAddr CR CR ." CODE " TYPE ` (SEE)
+\   \  DUP FIND-REST-END ['] REST-AREA CATCH DROP
+\ ;
+: see ' dup 0 !aAn
+  cr ." Code " A wordbyaddr type cr
+  begin
+   A INST -> A n 1+ -> n  cr
+   A c@ 0xC3 =
+     if A INST cr
+        A a - 1+ . ." bytes, "
+        n 1+ . ." instructions"
+        drop cr exit
+     then
+  again
+;
 PREVIOUS
 
 ( warn base )

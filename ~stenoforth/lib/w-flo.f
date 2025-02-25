@@ -47,6 +47,7 @@ MODULE: fpoint
 : >s      F>DS    ;
 : >f      DS>F    ;
 : d>f     D>F     ;
+I: to   ` FTO     ;
 : 2drop   FDROP FDROP ;
 EXPORT
 m: f|  {{ fpoint ;

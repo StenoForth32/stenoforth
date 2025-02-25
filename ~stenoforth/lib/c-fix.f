@@ -9,7 +9,7 @@ m: e ELSE ;                         m: E ENDCASE ;                     m: & AND 
 m: f ENDOF ;                        m: F FILL ;                        m: ~ INVERT ;
 m: g rnd ;                          m: G aDO ;                         m: | OR ;
 m: h HERE ;                         m: H WITHIN ;                      m: % MOD ;
-m: i 1+ ;                                                              m: : to ;
+m: i 1+ ;                                                              m: : -> ;
 m: j 1- ;                                                              m: ; EXIT ;
 m: k KEY ;                          m: K COMPARE ;
 m: l LSHIFT ;                       m: L LOOP ;

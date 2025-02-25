@@ -91,7 +91,7 @@ lhere @ u + 4 + DUP dtyp ! C! 0 lhere @ u + 5 + C!
 : l' ( l' name -- xt ) TRUE locxt ! ; IMMEDIATE \ дает xt для name
 
 USER st-wr  0 st-wr !
-: to 1 st-wr ! ; IMMEDIATE
+: -> 1 st-wr ! ; IMMEDIATE
 
 : NOTFOUND \ a u --  компиляция из локального словаря в глобальный словарь
   OVER     \ a u a

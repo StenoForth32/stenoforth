@@ -31,36 +31,36 @@ IF   bmax 1 17 WITHIN IF bmax 1- 4 * a=@p` THEN \ много DROP
 ELSE bmax 1 =
      IF   emax 2 17 WITHIN IF emax 1- -4 * -4 DO I @p=a` -4 +LOOP THEN \ много DUP
      ELSE emax 1 >
-          IF 1 to b
-             BEGIN  1 to e
+          IF 1 -> b
+             BEGIN  1 -> e
                BEGIN b e <> b e @SE = AND e @SE bmax <> AND e @SE emax @SE <> AND
                      b @SE bmax = b emax @SE = AND OR
                      IF  bmax b - b 1TE !T THEN
-                     e 1+ to e e emax =
+                     e 1+ -> e e emax =
                UNTIL
-               b 1+ to b  b bmax =
+               b 1+ -> b  b bmax =
              UNTIL
           THEN
           emax 1 >
-          IF 1 to e
+          IF 1  -> e
              BEGIN  e @SE bmax = IF  e bmax - 5 +  e 2TE !T THEN
-                    e 1+ to e  e emax =
+                    e 1+ -> e  e emax =
              UNTIL
           THEN
-          1 to b
+          1 -> b
           BEGIN  b emax @SE =
                  IF b 1TE @T
                     IF 9
                     ELSE bmax
-                    THEN b - to 3TE
+                    THEN b - -> 3TE
                  THEN
-                 b 1+ to b   b bmax =
+                 b 1+ -> b   b bmax =
           UNTIL
           emax 1 >
-          IF  1 to e
+          IF  1 -> e
               BEGIN e @SE emax @SE = e @SE e <> AND e 2TE @T 0= AND
                     IF 5 bmax - e + e 4TE !T THEN
-                    e 1+ to e  e emax =
+                    e 1+ -> e  e emax =
               UNTIL
           THEN
      THEN
