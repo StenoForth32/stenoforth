@@ -1,5 +1,6 @@
 REQUIRE STACK        ~stenoforth\lib\cstack.f         \ стеки в памяти
 REQUIRE CASE         lib\ext\case.f                   \ конструкция CASE
+
 REQUIRE {            ~mak\locals4.f
 \ REQUIRE {            lib\ext\locals.f                 \ локальные переменные
 REQUIRE NUMBER?      ~mak\lib\fpcnum.f                \ преобразование строк в числа
@@ -7,8 +8,6 @@ REQUIRE LIKE         ~pinka\lib\like.f                \ выделение по 
 
 REQUIRE M:           ~stenoforth\lib\nf-name.f        \ макросы, слова-строки
 REQUIRE $!           ~mak\place.f                     \ утилиты для многопроходной компиляции
-
-REQUIRE SEE          ~stenoforth\lib\disasm.f         \ доработанный SEE(дает размер кода и число инструкций)
 
 REQUIRE 0SQRT        ~stenoforth\assm\mp-assm.f       \ встроенный постфиксный ассемблер( с зачатками плав.точки)
 REQUIRE IDN          ~stenoforth\assm\sp-assm.f       \ встроенный трехпроходный ассемблер с метками и коротким синтаксисом для инструкций
@@ -30,11 +29,13 @@ REQUIRE closure      ~stenoforth\lib\closure.f        \ расширение д�
 REQUIRE valuenames   ~stenoforth\lib\c-fix.f          \ модуль синонимов для сжатия слов для работы с фикс.точкой - разряднось 32
 REQUIRE mfvaluenames ~stenoforth\lib\c-flo.f          \ модуль синонимов для сжатия слов для работы с плав.точкой
 REQUIRE dsynonyms    ~stenoforth\lib\c-fixd.f         \ модуль синонимов для сжатия слов для работы с фикс.точкой - разрядность 64
-REQUIRE SYNONYM      lib\include\wordlist-tools.f
+REQUIRE 2VARIABLE    lib\include\double.f
+REQUIRE SYNONYM      ~stenoforth\lib\synonym.f
 REQUIRE immediate    ~stenoforth\lib\w-fix.f
 REQUIRE f.           ~stenoforth\lib\r-flo.f
-
-S" g:\spf429\devel\~stenoforth\bin\spf486.exe" SAVE
+REQUIRE [type]       ~stenoforth\math\matr.f
+REQUIRE SEE          ~stenoforth\lib\disasm.f         \ доработанный SEE(дает размер кода и число инструкций)
+S" f:\spf429\devel\~stenoforth\bin\spf486.exe" SAVE
 
 BYE
 
