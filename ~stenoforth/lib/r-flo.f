@@ -24,6 +24,7 @@ SYNONYM fatan   FATAN
 SYNONYM fdrop   FDROP
 SYNONYM f0<>    F0<>
 SYNONYM d>f     D>F
+SYNONYM f>d     F>D
 SYNONYM fmax    FMAX
 SYNONYM fpi     FPI
 SYNONYM f>ds    F>DS

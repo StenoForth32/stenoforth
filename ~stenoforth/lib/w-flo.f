@@ -1,6 +1,6 @@
 \ stenoforth32
 
-\ Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¸ Ð½Ð°Ð´ Ñ‡Ð¸ÑÐ»Ð°Ð¼Ð¸ Ñ Ð¿Ð»Ð°Ð². Ñ‚Ð¾Ñ‡ÐºÐ¾Ð¹
+\ ®¯¥à æ¨¨ ­ ¤ ç¨á« ¬¨ á ¯« ¢. â®çª®©
 MODULE: fpoint
 : abs     FABS    ;
 : negate  FNEGATE ;
@@ -54,9 +54,9 @@ m: f|  {{ fpoint ;
 m: |f  }} ;
 ;MODULE
 
-\ Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¸ Ð½Ð°Ð´ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ½Ñ‹Ð¼Ð¸ Ñ‡Ð¸ÑÐ»Ð°Ð¼Ð¸
+\ ®¯¥à æ¨¨ ­ ¤ ª®¬¯«¥ªá­ë¬¨ ç¨á« ¬¨
 MODULE: complex
-m: arg i2, r2, i1, r1, ;
+m: arg i2$ r2$ i1$ r1$ ;
 m: rr  r1 r2 F* ;
 m: ii  i1 i2 F* ;
 m: ir  i1 r2 F* ;
@@ -65,7 +65,7 @@ m: a2  r2 r2 F* i2 i2 F* F+ ;
  : +  arg r1 r2 F+ i1 i2 F+ ;
  : -  arg r1 r2 F- i1 i2 F- ;
  : *  arg rr ii F- ir ri F+ ;
- : /  arg rr ii F+ a2 FDUP a3, F/
+ : /  arg rr ii F+ a2 FDUP a3$ F/
           ir ri F- a3 F/ ;
  : .  FSWAP F. F. ;
 EXPORT
@@ -73,48 +73,48 @@ m: c|  {{ complex ;
 m: |c  }} ;
 ;MODULE
 
-\ Ð¾Ð´Ð¸Ð½Ð°Ñ€Ð½Ñ‹Ðµ Ñ†ÐµÐ»Ñ‹Ðµ Ñ‡Ð¸ÑÐ»Ð° Ð½ÐµÐ¼ÐµÐ´Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¸ÑÐ¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ
+\ ®¤¨­ à­ë¥ æ¥«ë¥ ç¨á«  ­¥¬¥¤«¥­­®£® ¨á¯®«­¥­¨ï
 : NOTFOUND 2DUP 2>R 1- NUMBER? 2R@ + 1- C@ '`' = AND 0=
   IF 2DROP 2R> NOTFOUND EXIT THEN RDROP RDROP DROP
 ;
 
 \EOF
 
-\ Ñ€Ð°Ð´Ð¸ÑƒÑ_Ñ†Ð¸ÑÑ‚ÐµÑ€Ð½Ñ‹ Ð´Ð»Ð¸Ð½Ð°_Ñ†Ð¸ÑÑ‚ÐµÑ€Ð½Ñ‹ Ð²Ñ‹ÑÐ¾Ñ‚Ð°_Ð¶Ð¸Ð´ÐºÐ¾ÑÑ‚Ð¸ --> Ð¾Ð±ÑŠÑ‘Ð¼_Ð¶Ð¸Ð´ÐºÐ¾ÑÑ‚Ð¸
-: ÐžÐ±ÑŠÑ‘Ð¼  Ð²Ñ‹ÑÐ¾Ñ‚Ð°, Ð´Ð»Ð¸Ð½Ð°, Ñ€Ð°Ð´Ð¸ÑƒÑ,
-  f| Ñ€Ð°Ð´Ð¸ÑƒÑ Ð²Ñ‹ÑÐ¾Ñ‚Ð° - Ñ€Ð°Ð´Ð¸ÑƒÑ / acos ÑƒÐ³Ð¾Ð»,
-     Ñ€Ð°Ð´Ð¸ÑƒÑ Ñ€Ð°Ð´Ð¸ÑƒÑ * ÑƒÐ³Ð¾Ð» *
-     Ñ€Ð°Ð´Ð¸ÑƒÑ ÑƒÐ³Ð¾Ð» sin * Ñ€Ð°Ð´Ð¸ÑƒÑ Ð²Ñ‹ÑÐ¾Ñ‚Ð° - * - Ð´Ð»Ð¸Ð½Ð° * .
+\ à ¤¨ãá_æ¨áâ¥à­ë ¤«¨­ _æ¨áâ¥à­ë ¢ëá®â _¦¨¤ª®áâ¨ --> ®¡êñ¬_¦¨¤ª®áâ¨
+: Ž¡êñ¬  ¢ëá®â $ ¤«¨­ $ à ¤¨ãá$
+  f| à ¤¨ãá ¢ëá®â  - à ¤¨ãá / acos ã£®«$
+     à ¤¨ãá à ¤¨ãá * ã£®« *
+     à ¤¨ãá ã£®« sin * à ¤¨ãá ¢ëá®â  - * - ¤«¨­  * .
   |f
 ;
 
-1,5  20,0  0,3  ÐžÐ±ÑŠÑ‘Ð¼
+1,5  20,0  0,3  Ž¡êñ¬
 
-: Streug  x, y, z,  \ -- S
-  f| x y + z + 2e / p,
+: Streug  x$ y$ z$  \ -- S
+  f| x y + z + 2e / p$
   p x - p y - * p z - * p * sqrt . |f
 ;
 
 12,3 23,4 34,5 Streug
 
-\ Ð¿Ð¾Ð¸ÑÐº Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼Ð° Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸
+\ ¯®¨áª ¬¨­¨¬ã¬  äã­ªæ¨¨
 m: fun \ | x^3/3 + x^2 + 3x - 2 - |
    x ^2 x * 3e / x ^2 + 3e x * - 2e - abs ;
 
-: MinFun  xmax, xmin,
-  0e xy, 0e ymin, 0e x, 1e-7 dx,
+: MinFun  xmax$ xmin$
+  0e xy$ 0e ymin$ 0e x$ 1e-7 dx$
   f| xmin ip x fun ip ymin
   xmax dx / >s xmin dx / >s
   DO I >f dx * ip x fun dup ymin <
      IF   ip ymin I >f dx * ip xy
      ELSE drop THEN
   LOOP
-  CR ." Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð» x Ð¾Ñ‚ " xmin . ." Ð´Ð¾ " xmax .
+  CR ." ¨­â¥à¢ « x ®â " xmin . ." ¤® " xmax .
   CR ." ymin = " ymin . ." x = " xy . |f
 ;
 -2e 2e MinFun
 
-: check  -0,5770273 x, f| fun |f ; check CR F.
+: check  -0,5770273 x$ f| fun |f ; check CR F.
 
 : NOTFOUND 2DUP 2>R 1- NUMBER? 2R@ + 1- C@ '`' = AND 0=
   IF 2DROP 2R> NOTFOUND EXIT THEN RDROP RDROP DROP

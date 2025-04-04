@@ -1,7 +1,8 @@
 \ stenoforth32
+\                            name             xt          typ
+\ „·‚‡Æ©·‚¢Æ ·´Æ¢†‡Ô: byte-0 bytes-lex byte-0 addr byte-0 byte-typ byte-0
 
-\ —É—Å—Ç—Ä–æ–π—Å—Ç–≤–æ —Å–ª–æ–≤–∞—Ä—è: byte-0 bytes-lex byte-0 addr byte-0 byte-typ byte-0
-\ –ª–æ–∫–∞–ª—å–Ω–æ–µ –∏–º–µ–Ω–æ–≤–∞–Ω–∏–µ
+\ ´Æ™†´Ï≠Æ• ®¨•≠Æ¢†≠®•
 
 CREATE lcode 0x100000 ALLOT lcode VALUE dpl
 CREATE ldate 0x100000 ALLOT ldate VALUE ldhere
@@ -11,11 +12,11 @@ VARIABLE XHERE  VARIABLE xdpl
 USER-CREATE alvoc  lenlvoc USER-ALLOT  0 alvoc C!
 USER lhere
 USER axtloc
-USER dtyp  0 dtyp !   \ —Ç–∏–ø –ø–µ—Ä–µ–º–µ–Ω–Ω–æ–π
+USER dtyp  0 dtyp !   \ ‚®Ø Ø•‡•¨•≠≠Æ©
 USER locxt 0 locxt !
 USER iol   0 iol !
 
-USER-CREATE udata  0x1000 USER-ALLOT
+USER-CREATE udata  0x2500 USER-ALLOT
 udata ' udata 5 + @ DUP VALUE udhere - VALUE basa
 
 m: usn! [ 0x8789 W, udhere , ] ;
@@ -24,7 +25,7 @@ m: adr@ [ 0xC78B W, udhere 0xC081 W, , ] ;  \ mov eax edi  add eax udhere
 
 \ -- c-addr u
 : lvoc   alvoc lenlvoc ;  lvoc ERASE 1 lhere !
-\ c-addr u -- axtloc \ –∑–¥–µ—Å—å u –Ω–∞ 1 –∏–ª–∏ 2 —Å–∏–º–≤–æ–ª–∞ –º–µ–Ω—å—à–µ —á–µ–º –∏—Å—Ö–æ–¥–Ω–æ–µ –∏–º—è —Å —Å—É—Ñ—Ñ–∏–∫—Å–æ–º —Ç–∏–ø–∞ –≤ 1 –∏–ª–∏ 2 —Å–∏–º–≤–æ–ª–∞
+\ c-addr u -- axtloc \ ß§•·Ï u ≠† 1 ®´® 2 ·®¨¢Æ´† ¨•≠ÏË• Á•¨ ®·ÂÆ§≠Æ• ®¨Ô · ·„‰‰®™·Æ¨ ‚®Ø† ¢ 1 ®´® 2 ·®¨¢Æ´†
 : lname, { a u | axt -- axtloc }
   lhere @ TO axt
   a axt u MOVE   0 axt u + C!
@@ -37,22 +38,22 @@ m: adr@ [ 0xC78B W, udhere 0xC081 W, , ] ;  \ mov eax edi  add eax udhere
 \ c-addr u --
 : headl  lname, dpl SWAP ! lhere @ 7 + lhere ! ;
 \ c-addr u s  -- c-addr u
+
 m: nf1-exit \ -ROT 2DUP + 1- C@ -ROT 2SWAP <> IF NOTFOUND EXIT THEN
 a u + 1- C@ s <> IF a u NOTFOUND EXIT THEN a u
 a u + 1- C@
 CASE
-'(' OF   7 ENDOF \ code
 ')' OF   0 ENDOF \ variable-addres  4 or 8 bytes
+'\' OF   1 ENDOF \ value-data fix-point
+':' OF   2 ENDOF \ value-data-multi-threads fix-point
+'$' OF   4 ENDOF \ value-data float-point
+';' OF   5 ENDOF \ value-data-multi-threads float-point
 '"' OF   6 ENDOF \ evaluate strings
+'(' OF   7 ENDOF \ code
 '[' OF   8 ENDOF \ macros
 '{' OF   9 ENDOF \ closures
-'!' OF   1 ENDOF \ value-data fix-point
-'/' OF   1 ENDOF
-':' OF   2 ENDOF \ value-data-multi-threads fix-point
-',' OF   4 ENDOF \ value-data float-point
-';' OF   5 ENDOF \ value-data-multi-threads float-point
-']' OF 0xA ENDOF \ arrays-data fix-point
-'}' OF 0xB ENDOF \ arrays-data float-point
+']' OF  10 ENDOF \ arrays-data fix-point
+'}' OF  11 ENDOF \ arrays-data float-point
 ENDCASE
 lhere @ u + 5 + DUP dtyp ! C! 0 lhere @ u + 6 + C!
 ;
@@ -67,18 +68,18 @@ ENDCASE
 lhere @ u + 4 + DUP dtyp ! C! 0 lhere @ u + 5 + C!
 ;
 
-: +: : ;          \ —Ä–∞—Å—à–∏—Ä–µ–Ω–∏–µ –æ–±–ª–∞—Å—Ç–∏ –≤–∏–¥–∏–º–æ—Å—Ç–∏ —Å–ª–æ–≤–∞—Ä—è –ø—Ä–µ–¥—ã–¥—É—â–∏—Ö –æ–ø—Ä–µ–¥–µ–ª–µ–Ω–∏–π –¥–ª—è —Å–ª–µ–¥—É—é—â–µ–≥–æ –æ–ø—Ä–µ–¥–µ–ª–µ–Ω–∏—è
-: : init-lvoc : ; \ —Å—Ç–∏—Ä–∞–Ω–∏–µ —Å–ª–æ–≤–∞—Ä—è –ø—Ä–µ–¥—ã–¥—É—â–∏—Ö –æ–ø—Ä–µ–¥–µ–ª–µ–Ω–∏–π –ø–æ —Å–ª–µ–¥—É—é—â–µ–º—É –æ–ø—Ä–µ–¥–µ–ª–µ–Ω–∏—é —á–µ—Ä–µ–∑ ':'
+: +: : ;          \ ‡†·Ë®‡•≠®• Æ°´†·‚® ¢®§®¨Æ·‚® ·´Æ¢†‡Ô Ø‡•§Î§„È®Â ÆØ‡•§•´•≠®© §´Ô ·´•§„ÓÈ•£Æ ÆØ‡•§•´•≠®Ô
+: : init-lvoc : ; \ ·‚®‡†≠®• ·´Æ¢†‡Ô Ø‡•§Î§„È®Â ÆØ‡•§•´•≠®© ØÆ ·´•§„ÓÈ•¨„ ÆØ‡•§•´•≠®Ó Á•‡•ß ':'
 
 : NOTFOUND ( a u -- ) '(' { a u s } nf1-exit 1- headl L{ ;
 : ) ( -- )  RET, }L ; IMMEDIATE                                                         \ name(  ) code
 : NOTFOUND ( a u -- ) '"' { a u s } nf1-exit 1- headl L{ LOAD-TEXT RET, }L ;            \ name"  " string
 : NOTFOUND ( a u -- ) '[' { a u s } nf1-exit 1- headl L{ LOAD-TEXT ` EVALUATE RET, }L ; \ name[  ] macros
 
-\ –∑–∞–º—ã–∫–∞–Ω–∏—è                                                                             \ closure
-: NOTFOUND ( a u -- ) '{' { a u s } nf1-exit 1- headl L{ LOAD-TEXT ` xts RET, }L ;      \ name{  —Ç–µ–∫—Å—Ç –∑–∞–º—ã–∫–∞–Ω–∏—è }
-: x) ( -- )  RET, }L axtloc @ @ LIT, ; IMMEDIATE                                        \ name( ... x) –≤—ã–¥–∞–µ—Ç xt
-\ –ø–æ–∏—Å–∫ –≤ —Å–ª–æ–≤–∞—Ä–µ –æ–ø—Ä–µ–¥–µ–ª–µ–Ω–∏—è                                                                                        \ name –¥–∞–ª—å—à–µ –Ω–µ –∏—Å–ø–æ–ª—å–∑—É–µ—Ç—Å—è
+\ ß†¨Î™†≠®Ô                                                                             \ closure
+: NOTFOUND ( a u -- ) '{' { a u s } nf1-exit 1- headl L{ LOAD-TEXT ` xts RET, }L ;      \ name{  ‚•™·‚ ß†¨Î™†≠®Ô }
+: x) ( -- )  RET, }L axtloc @ @ LIT, ; IMMEDIATE                                        \ name( ... x) ¢Î§†•‚ xt
+\ ØÆ®·™ ¢ ·´Æ¢†‡• ÆØ‡•§•´•≠®Ô                                                                                        \ name §†´ÏË• ≠• ®·ØÆ´Ïß„•‚·Ô
 : lsearch { a u a1 u1 \ a2 u2 fl -- a u 0|1 }
    0 TO fl BEGIN a u a1 u1 SEARCH >R TO u2 TO a2
                  R> a2 u1 + C@ 0= a2 1- C@ 0= AND AND
@@ -88,14 +89,14 @@ lhere @ u + 4 + DUP dtyp ! C! 0 lhere @ u + 5 + C!
                  THEN
        fl UNTIL
 ;
-: l' ( l' name -- xt ) TRUE locxt ! ; IMMEDIATE \ –¥–∞–µ—Ç xt –¥–ª—è name
+: l' ( l' name -- xt ) TRUE locxt ! ; IMMEDIATE \ §†•‚ xt §´Ô name
 
 USER st-wr  0 st-wr !
 : -> 1 st-wr ! ; IMMEDIATE
 
-: NOTFOUND \ a u --  –∫–æ–º–ø–∏–ª—è—Ü–∏—è –∏–∑ –ª–æ–∫–∞–ª—å–Ω–æ–≥–æ —Å–ª–æ–≤–∞—Ä—è –≤ –≥–ª–æ–±–∞–ª—å–Ω—ã–π —Å–ª–æ–≤–∞—Ä—å
+: NOTFOUND \ a u --  ™Æ¨Ø®´ÔÊ®Ô ®ß ´Æ™†´Ï≠Æ£Æ ·´Æ¢†‡Ô ¢ £´Æ°†´Ï≠Î© ·´Æ¢†‡Ï
   OVER     \ a u a
-  C@       \ 1-–π —Å–∏–º–≤–æ–ª –∏–º–µ–Ω–∏
+  C@       \ 1-© ·®¨¢Æ´ ®¨•≠®
   '`' = IF 1 /STRING TRUE locxt ! THEN \ a u
   lvoc     \ a u av uv
   2OVER    \ a u av uv a u
@@ -107,32 +108,44 @@ USER st-wr  0 st-wr !
   + 1+ DUP 5 + C@ { typ }
   @ st-wr @
   IF
-  typ 1 = IF 12 ELSE   \ 1
-  typ 2 = IF 18 ELSE   \ 4
+  typ 1 = IF 12 ELSE   \ 1      12
+  typ 2 = IF 13 ELSE   \ 4
   typ 3 = IF 20 ELSE   \ 2
   typ 4 = IF 25 ELSE   \ 3
   typ 5 = IF 13 ELSE   \ 5
   0 THEN THEN THEN THEN THEN
   +
   THEN
-  locxt @ 0<> IF 0 locxt ! LIT, ELSE typ 1 =
-  IF DP @ st-wr @ IF 12 ELSE 11 THEN MOVE DP @ st-wr @ IF 12 ELSE 11 THEN + DP ! ELSE COMPILE, THEN THEN 0 st-wr !
+  locxt @ 0<>
+  IF   0 locxt ! LIT,
+  ELSE typ 1 =
+       IF DP @ st-wr @
+          IF   12   \ 12
+          ELSE 11   \ 11
+          THEN
+          MOVE DP @ st-wr @
+          IF   12   \ 12
+          ELSE 11   \ 11
+          THEN + DP !
+       ELSE COMPILE,
+       THEN
+  THEN 0 st-wr !
 ;
-\ –ø–µ—Ä–µ–º–µ–Ω–Ω—ã–µ –æ–¥–Ω–æ–ø–æ—Ç–æ—á–Ω—ã–µ
+\ Ø•‡•¨•≠≠Î• Æ§≠ÆØÆ‚ÆÁ≠Î•
 : NOTFOUND ( a u --  ) \ 2variable variable    name)
   ')' { a u s } nf1-exit 1- headl  L{ ldhere LIT, RET, ldhere 2 CELLS + TO ldhere }L ;
 : NOTFOUND ( a u --  ) \ value   name!
-  '!' { a u s } nf1-exit 1- headl ldhere LIT, ` ! L{ ldhere LIT, ` @ RET, ldhere LIT, ` ! RET, ldhere 1 CELLS + TO ldhere }L
+  '\' { a u s } nf1-exit 1- headl ldhere LIT, ` ! L{ ldhere LIT, ` @ RET, ldhere LIT, ` ! RET, ldhere 1 CELLS + TO ldhere }L
 ;
 : NOTFOUND ( a u --  ) \ 2value  name!d
   '!d' { a u s } nf2-exit 2- headl ldhere LIT, ` 2! L{ ldhere LIT, ` 2@ RET, ldhere LIT, ` 2! RET, ldhere 2 CELLS + TO ldhere }L
 ;
 : NOTFOUND ( a u --  ) \ fvalue  name,
-  ',' { a u s } nf1-exit 1- headl ` FLOAT>DATA ldhere LIT, ` 2! ( 4 ltyp !)
+  '$' { a u s } nf1-exit 1- headl ` FLOAT>DATA ldhere LIT, ` 2! ( 4 ltyp !)
   L{ ldhere LIT, ` 2@ ` DATA>FLOAT RET, ` FLOAT>DATA ldhere LIT, ` 2! RET, ldhere 2 CELLS + TO ldhere }L
 ;
-\ –ø–µ—Ä–µ–º–µ–Ω–Ω—ã–µ –º–Ω–æ–≥–æ–ø–æ—Ç–æ—á–Ω—ã–µ
-: NOTFOUND ( a u --  ) \ value   name!u
+\ Ø•‡•¨•≠≠Î• ¨≠Æ£ÆØÆ‚ÆÁ≠Î•
+: NOTFOUND ( a u --  ) \ value   name:
   ':' { a u s } nf1-exit 1- headl ` usn! ` DROP \ 2 ltyp !
   L{ ` DUP  ` usn@ RET,
      ` usn! ` DROP RET,
@@ -144,30 +157,33 @@ USER st-wr  0 st-wr !
      ` FLOAT>DATA32 ` usn! ` DROP RET,
      udhere 1 CELLS + TO udhere }L
 ;
-\ –º–∞—Å—Å–∏–≤—ã –æ–¥–Ω–æ–ø–æ—Ç–æ—á–Ω—ã–µ
-: NOTFOUND ( a u --  ) \ ¬† [ 20 ] arr]
+\ ¨†··®¢Î Æ§≠ÆØÆ‚ÆÁ≠Î•
+: NOTFOUND ( a u --  ) \ ˇ [ 20 ] arr]
   ']' { a u s } nf1-exit 1- headl
   L{ ldhere LIT, RET, ldhere + TO ldhere }L
 ;
-\ –º–∞—Å—Å–∏–≤—ã –º–Ω–æ–≥–æ–ø–æ—Ç–æ—á–Ω—ã–µ
-: NOTFOUND ( a u --  ) \ ¬† [ 20 ] arr]u
+\ ¨†··®¢Î ¨≠Æ£ÆØÆ‚ÆÁ≠Î•
+: NOTFOUND ( a u --  ) \ ˇ [ 20 ] arr]u
   '}' { a u s } nf1-exit 1- headl
   L{ ` DUP ` adr@ RET,
   udhere + TO udhere }L
 ;
-: NOTFOUND ( c-addr u -- ) { a u | [ 16 ] arr } \ –∏—Å–ø–æ–ª–Ω–µ–Ω–∏–µ –∏–∑ —Ñ–æ—Ä—Ç–∞ –∏–ª–∏ –µ—Å–ª–∏ —Ç–∞–º –Ω–µ—Ç, —Ç–æ –∏–∑ –ª–æ–∫. —Å–ª–æ–≤–∞—Ä—è
+\ ®·ØÆ´≠•≠®• ®ß ‰Æ‡‚† ®´® •·´® ‚†¨ ≠•‚, ‚Æ ®ß ´Æ™. ·´Æ¢†‡Ô
+: NOTFOUND ( c-addr u -- ) { a u | [ 16 ] arr }
  a u + 1- C@ '`' = u 1 > AND 0= IF a u NOTFOUND EXIT THEN
- a u 1- SFIND IF EXECUTE \ –∏—â–µ–º –≤ —Ç–µ–∫—É—â–µ–º –≥–ª–æ–±–∞–ª—å–Ω–æ–º —Å–ª–æ–≤–∞—Ä–µ
-              ELSE lvoc 2SWAP lsearch  \ –∏—â–µ–º –≤ –ª–æ–∫–∞–ª—å–Ω–æ–º —Å–ª–æ–≤–∞—Ä–µ
+ a u 1- SFIND IF EXECUTE \ ®È•¨ ¢ ‚•™„È•¨ £´Æ°†´Ï≠Æ¨ ·´Æ¢†‡•
+              ELSE lvoc 2SWAP lsearch  \ ®È•¨ ¢ ´Æ™†´Ï≠Æ¨ ·´Æ¢†‡•
                    IF + 1+ @ EXECUTE
                    ELSE TYPE SPACE ." not found " CR
                    THEN
               THEN
 ;
-\ —Ä–∞—Å–ø–æ–∑–Ω–∞–≤–∞–Ω–∏–µ —á–∏—Å–µ–ª —Å –ø–ª–∞–≤–∞—é—â–µ–π —Ç–æ—á–∫–æ–π
+\ ‡†·ØÆß≠†¢†≠®• Á®·•´ · Ø´†¢†ÓÈ•© ‚ÆÁ™Æ©
 : NOTFOUND  ( c-addr u -- ) { a u | sq sz pt [ 20 ] an }
-  a u OVER + SWAP ?DO I C@ '0' ':' WITHIN IF sq 1+ TO sq THEN  I C@ ',' = IF I a - TO pt sz 1+ TO sz THEN LOOP
-  a C@ '-' = IF sq u 2- = ELSE sq u 1- = THEN sz 1 = AND  0= IF a u NOTFOUND EXIT THEN
+  a u OVER + SWAP ?DO I C@ '0' ':' WITHIN IF sq 1+ TO sq THEN
+  I C@ ',' = IF I a - TO pt sz 1+ TO sz THEN LOOP
+  a C@ '-' = IF sq u 2- = ELSE sq u 1- = THEN sz 1 = AND  0=
+  IF a u NOTFOUND EXIT THEN
   a an u 2+  MOVE 'e' an u + C! '.' an pt + C! an u 1+ EVALUATE
 ;
 I: | NextWord 2DUP + 1- C@ '|' <> IF RECURSE EVALUATE ELSE 2DROP THEN ;

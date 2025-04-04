@@ -1,6 +1,6 @@
 \ stenoforth32
-\ Ð¿ÐµÑ€ÐµÐ²Ð¾Ð´ Ñ‡Ð°ÑÑ‚Ð¾ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÐ¼Ñ‹Ñ… Ð¸Ð¼ÐµÐ½ ÑÐ»Ð¾Ð² Ð² Ð½Ð¸Ð¶Ð½Ð¸Ð¹ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€
-SYNONYM exit         EXIT
+\ ¯¥à¥¢®¤ ç áâ® ¨á¯®«ì§ã¥¬ëå ¨¬¥­ á«®¢ ¢ ­¨¦­¨© à¥£¨áâà
+: 2LIT, SWAP LIT, LIT, ;
 SYNONYM c@           C@
 SYNONYM w@           W@
 SYNONYM c!           C!
@@ -20,10 +20,13 @@ SYNONYM nip          NIP
 SYNONYM tuck         TUCK
 SYNONYM rot          ROT
 SYNONYM -rot         -ROT
+SYNONYM pick         PICK
+SYNONYM roll         ROLL
 
 SYNONYM sp@          SP@
 SYNONYM sp!          SP!
 SYNONYM depth        DEPTH
+SYNONYM .sn          .SN
 SYNONYM >r           >R
 SYNONYM 2>r          2>R
 SYNONYM r>           R>
@@ -32,9 +35,15 @@ SYNONYM r@           R@
 SYNONYM 2r@          2R@
 SYNONYM rp@          RP@
 SYNONYM rp!          RP!
+SYNONYM rdrop        RDROP
 SYNONYM rallot       RALLOT
+SYNONYM s0           S0
+SYNONYM r0           R0
 
+SYNONYM char         CHAR
+SYNONYM [char]       [CHAR]
 SYNONYM .bl          .BL
+SYNONYM .sn          .SN
 SYNONYM bl           BL
 SYNONYM space        SPACE
 SYNONYM spaces       SPACES
@@ -50,6 +59,7 @@ SYNONYM invert       INVERT
 SYNONYM lshift       LSHIFT
 SYNONYM rshift       RSHIFT
 SYNONYM dump         DUMP
+SYNONYM \eof         \EOF
 
 SYNONYM true         TRUE
 SYNONYM false        FALSE
@@ -79,10 +89,12 @@ SYNONYM loop         LOOP
 SYNONYM +loop        +LOOP
 
 SYNONYM create       CREATE
+SYNONYM created      CREATED
 SYNONYM does>        DOES>
 SYNONYM aligned      ALIGNED
 SYNONYM align        ALIGN
 SYNONYM align-nop    ALIGN-NOP
+SYNONYM align-bytes  ALIGN-BYTES
 
 SYNONYM dp           DP
 SYNONYM here         HERE
@@ -97,9 +109,11 @@ SYNONYM 2variable    2VARIABLE
 SYNONYM 2value       2VALUE
 SYNONYM vect         VECT
 SYNONYM ->vect       ->VECT
+SYNONYM ->variable   ->VARIABLE
 SYNONYM user         USER
 SYNONYM user-value   USER-VALUE
 SYNONYM user-create  USER-CREATE
+SYNONYM to           TO
 SYNONYM allocate     ALLOCATE
 SYNONYM resize       RESIZE
 SYNONYM free         FREE
@@ -107,17 +121,25 @@ SYNONYM throw        THROW
 SYNONYM recurse      RECURSE
 SYNONYM latest       LATEST
 SYNONYM last         LAST
-
+SYNONYM last-cfa     LAST-CFA
+SYNONYM literal      LITERAL
+SYNONYM 2literal     2LITERAL
+SYNONYM fliteral     FLITERAL
 SYNONYM lit,         LIT,
 SYNONYM slit,        SLIT,
 SYNONYM rlit,        RLIT,
+SYNONYM 2lit,        2LIT,
 SYNONYM dlit,        DLIT,
+SYNONYM compile,     COMPILE,
+SYNONYM [compile]    [COMPILE]
 SYNONYM number?      NUMBER?
 SYNONYM :noname      :NONAME
 SYNONYM erase        ERASE
 SYNONYM fill         FILL
 SYNONYM compare      COMPARE
 SYNONYM search       SEARCH
+SYNONYM cmove>       CMOVE>
+SYNONYM cmove        CMOVE
 SYNONYM move         MOVE
 SYNONYM emit         EMIT
 SYNONYM spmove       SPMOVE
@@ -137,7 +159,9 @@ SYNONYM execute      EXECUTE
 SYNONYM immediate    IMMEDIATE
 SYNONYM base         BASE
 SYNONYM state        STATE
+SYNONYM warning      WARNING
 
+SYNONYM s,           S,
 SYNONYM s"           S"
 SYNONYM abort"       ABORT"
 SYNONYM nextword     NextWord
@@ -145,6 +169,7 @@ SYNONYM wordbyaddr   WordByAddr
 SYNONYM parse-name   PARSE-NAME
 SYNONYM parse        PARSE
 
+SYNONYM forth        FORTH
 SYNONYM vocabulary   VOCABULARY
 SYNONYM order        ORDER
 SYNONYM only         ONLY
@@ -153,11 +178,21 @@ SYNONYM definitions  DEFINITIONS
 SYNONYM previous     PREVIOUS
 SYNONYM context      CONTEXT
 SYNONYM current      CURRENT
+SYNONYM notfound     NOTFOUND
+SYNONYM recgen       NOTFOUND
+SYNONYM words        WORDS
 SYNONYM id.          ID.
 SYNONYM name>        NAME>
 SYNONYM name>f       NAME>F
 SYNONYM name>c       NAME>C
-SYNONYM to           TO
 SYNONYM seet         SEET
 SYNONYM set-opt      SET-OPT
 SYNONYM dis-opt      DIS-OPT
+
+SYNONYM exit         EXIT
+SYNONYM task:        TASK:
+SYNONYM start        START
+SYNONYM stop         STOP
+SYNONYM suspend      SUSPEND
+SYNONYM resume       RESUME
+SYNONYM pause        PAUSE

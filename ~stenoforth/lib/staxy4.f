@@ -1,17 +1,17 @@
 \ stenoforth32
 
-\ staxy     1...5-->0...16      1| ... 5|1234512345123451
+\ staxy     1...5-->0...16      1\ ... 5\1234512345123451
 \ : a=b  0xC38B W,    ;  : a=c  0xC18B W,    ;  : a=d  0xC28B W,    ;  : a=s  0xC68B W,    ;  : p+   0x6D8D W, C, ;
 \ : a=@p 0x458B W, C, ;  : b=@p 0x5D8B W, C, ;  : c=@p 0x4D8B W, C, ;  : d=@p 0x558B W, C, ;  : s=@p 0x758B W, C, ;
 \ : @p=a 0x4589 W, C, ;  : @p=b 0x5D89 W, C, ;  : @p=c 0x4D89 W, C, ;  : @p=d 0x5589 W, C, ;  : @p=s 0x7589 W, C, ;
 
-: NOTFOUND u! a!
-1 a + C@ '|' <> 0 a + C@ '1' '5' 1+ WITHIN 0= OR IF  a u NOTFOUND EXIT THEN  STATE @ 0= IF HERE here! THEN
-0 b! 0 e! [ 17 ] SE] [ 17 ] 1TE] [ 17 ] 2TE] 0 3TE! [ 17 ] 4TE] [ 17 ] 5TE]
+: NOTFOUND u\ a\
+1 a + C@ '\' <> 0 a + C@ '1' '5' 1+ WITHIN 0= OR IF  a u NOTFOUND EXIT THEN  STATE @ 0= IF HERE here\ THEN
+0 b\ 0 e\ [ 17 ] SE] [ 17 ] 1TE] [ 17 ] 2TE] 0 3TE\ [ 17 ] 4TE] [ 17 ] 5TE]
 a=b[  0xC38B W,    ]  a=c[  0xC18B W,    ]  a=d[  0xC28B W,    ]  a=s[  0xC68B W,    ]  p+[   0x6D8D W, C, ]
 a=@p[ 0x458B W, C, ]  b=@p[ 0x5D8B W, C, ]  c=@p[ 0x4D8B W, C, ]  d=@p[ 0x558B W, C, ]  s=@p[ 0x758B W, C, ]
 @p=a[ 0x4589 W, C, ]  @p=b[ 0x5D89 W, C, ]  @p=c[ 0x4D89 W, C, ]  @p=d[ 0x5589 W, C, ]  @p=s[ 0x7589 W, C, ]
-u 2- emax!   a C@ '0' - bmax!
+u 2- emax\   a C@ '0' - bmax\
 @T(  + C@ )  !T(  + C! )  @SE(  SE @T )  !SE(  SE !T )
 SE 17 ERASE  1TE 17 ERASE  2TE 17 ERASE  4TE 17 ERASE 5TE 17 ERASE
 emax 0= bmax 1 = OR 0= IF emax 2+ 2 DO I a @T '0' - I 1- !SE LOOP THEN
@@ -27,9 +27,9 @@ TE=R|CB(
  ENDCASE )
 CE=TE(  @T DUP IF 16 SWAP 4 * - @p=a` ELSE DROP THEN )
 emax 0=
-IF   bmax 1 17 WITHIN IF bmax 1- 4 * a=@p` THEN \ Ð¼Ð½Ð¾Ð³Ð¾ DROP
+IF   bmax 1 17 WITHIN IF bmax 1- 4 * a=@p` THEN \ ¬­®£® DROP
 ELSE bmax 1 =
-     IF   emax 2 17 WITHIN IF emax 1- -4 * -4 DO I @p=a` -4 +LOOP THEN \ Ð¼Ð½Ð¾Ð³Ð¾ DUP
+     IF   emax 2 17 WITHIN IF emax 1- -4 * -4 DO I @p=a` -4 +LOOP THEN \ ¬­®£® DUP
      ELSE emax 1 >
           IF 1 -> b
              BEGIN  1 -> e
@@ -71,7 +71,7 @@ IF
 17 1 ?DO I 2TE CE=TB LOOP
 3TE TE=R|CB
 17 1 ?DO I 4TE CE=TE LOOP
-17 1 ?DO bmax 1- I - 4 * I @SE 1TE @T pr5! pr5 0<> bmax pr5 - I 5TE @T <> AND
+17 1 ?DO bmax 1- I - 4 * I @SE 1TE @T pr5\ pr5 0<> bmax pr5 - I 5TE @T <> AND
           IF bmax pr5 -
                CASE 1 OF @p=b`  ENDOF 2 OF @p=c`  ENDOF  3 OF @p=d`   ENDOF  4 OF @p=s`   ENDOF
                     DROP
@@ -83,11 +83,11 @@ bmax emax - DUP 0<> IF 4 * p+` ELSE DROP THEN  STATE @ 0= IF RET, here EXECUTE T
 ;
 
 
-: NOTFOUND u! a!
-a C@ '1' '5' 1+ WITHIN a 1+ C@ '$' =  AND a 2+ C@ '[' <> AND 0= IF a u NOTFOUND EXIT THEN
-a C@ '0' - bmax! bmax u 2- +  emax!
-1s" 1|1 "  2s" 2|12 "  3s" 3|123 "  4s" 4|1234 "  5s" 5|12345 "
-emax 2+ ALLOCATE THROW ah! ah emax 2+ ERASE
+: NOTFOUND u\ a\
+a C@ '1' '5' 1+ WITHIN a 1+ C@ '%' =  AND a 2+ C@ '[' <> AND 0= IF a u NOTFOUND EXIT THEN
+a C@ '0' - bmax\ bmax u 2- +  emax\
+1s" 1\1 "  2s" 2\12 "  3s" 3\123 "  4s" 4\1234 "  5s" 5\12345 "
+emax 2+ ALLOCATE THROW ah\ ah emax 2+ ERASE
 bmax
 CASE
 1 OF 1s ENDOF 2 OF 2s ENDOF 3 OF 3s ENDOF 4 OF 4s ENDOF 5 OF 5s ENDOF

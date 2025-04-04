@@ -1604,8 +1604,13 @@ DUP FIND-REST-END ['] REST-AREA CATCH DROP ;
     ' DUP WordByAddr CR CR ." CODE " TYPE ` (SEE)
   \  DUP FIND-REST-END ['] REST-AREA CATCH DROP
 ;
-: see ' dup 0 !aAn
-  cr ." Code " A wordbyaddr type cr
+
+\ : see       ( "name" -- )
+\     ' DUP WordByAddr CR CR ." CODE " TYPE ` (SEE)
+\   \  DUP FIND-REST-END ['] REST-AREA CATCH DROP
+\ ;
+: see ' dup 0 | a\ A\ n\ |
+  cr A wordbyaddr type cr
   begin
    A INST -> A n 1+ -> n  cr
    A c@ 0xC3 =
@@ -1614,7 +1619,9 @@ DUP FIND-REST-END ['] REST-AREA CATCH DROP ;
         A a - 1+ . ." bytes, " n 1+ . ." instructions"
         drop    cr exit
      else
-        A w@ 0x0000 = if
+        A w@ 0x00 = A c@ 0x55 =
+        A c@ 0xAF = or or
+        if
         A a - . ." bytes, " n . ." instructions"
         cr exit then
      then
@@ -1627,3 +1634,16 @@ BASE !
 WARNING !
 
 \ .(  Ok) CR
+\EOF
+: see ' dup 0 | a$ A$ n$ |
+  cr ." Code " A wordbyaddr type cr
+  begin
+   A INST -> A n 1+ -> n  cr
+   A c@ 0xC3 =
+     if A INST cr
+        A a - 1+ . ." bytes, "
+        n 1+ . ." instructions"
+        drop cr exit
+     then
+  again
+;
