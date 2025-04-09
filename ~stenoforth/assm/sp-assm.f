@@ -819,12 +819,12 @@ M: XR!
 L2  JZ                      \ если длина ноль - сразу на выход
     S=A                     \ вход в список
     $ 4 D=@P                \ искомое слово в ES:DI
-    $ FFFF B=#   $ 3 D=#?
+    $ 0xFFFF B=#   $ 3 D=#?
 L6  JB
-    $ FFFFFFFF B=#
-L6: A=@T  $ 8 #A<<  D|A  D&B  $ 0 bA=b#  $ FF A&#
+    $ 0xFFFFFFFF B=#
+L6: A=@T  $ 8 #A<<  D|A  D&B  $ 0 bA=b#  $ 0xFF A&#
 L1  JMP
-L3: $ FF  A&#   $ 1 S=@SA
+L3: $ 0xFF  A&#   $ 1 S=@SA
 L1: S|S
 L2  JZ                      \ конец поиска
     A=@S  A&B   A=D?
@@ -843,4 +843,3 @@ L5: T=RS
 ;
 
 SEE TST
-\ .

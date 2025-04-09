@@ -21,7 +21,7 @@
 \   XMM0     XMM1     XMM2     XMM3     XMM4     XMM5     XMM6     XMM7
 0 ITO X0 1 ITO X1 2 ITO X2 3 ITO X3 4 ITO X4 5 ITO X5 6 ITO X6 7 ITO X7
 
-I: $ HEX NextWord NUMBER? DROP D>S >CS DECIMAL ;
+I: $ ( HEX) NextWord NUMBER? DROP D>S >CS ( DECIMAL) ;  \ ******** убрал hex
 
 : 1R  CS>  TO R1 C, ;
 : 1R1 CS@ CS> TO R1 TO R2 C, ;
@@ -869,45 +869,3 @@ I: 0=@qR  5 0xDB @RO ; \ FLD  m80real
 I: wA=CWR 0x9B C, 0xDF C, 0xE0 C, ; \ FSTSW AX
 
 I: 0SQRT  0xD9 C, 0xFA C, ; \ FSQRT
-
-
-\EOF
-
-: TST
-EA $ 567891 R+@
-EA $ 567891 wR+@
-EA $ 567891 bR+@
-$ 567891 EA @+R
-$ 567891 EA @+wR
-$ 567891 EA @+bR
-$ 567891 $ 12345678 @+#
-$ 567891 $ 1234 @+w#
-$ 567891 $ 12 @+b#
-$ 567891 EA @-R
-$ 567891 EA @-wR
-$ 567891 EA @-bR
-$ 567891 $ 12345678 @-#
-$ 567891 $ 1234 @-w#
-$ 567891 $ 12 @-b#
-$ 567891 EA @c+R
-$ 567891 EA @c+wR
-$ 567891 EA @c+bR
-$ 567891 $ 12345678 @c+#
-$ 567891 $ 1234 @c+w#
-$ 567891 $ 12 @c+b#
-$ 567891 EA @c-R
-$ 567891 EA @c-wR
-$ 567891 EA @c-bR
-$ 567891 $ 12345678 @c-#
-$ 567891 $ 1234 @c-w#
-$ 567891 $ 12 @c-b#
-$ 4 Ba  $ -4 Aa A=@P $ 4 Pa
-;
-
-REQUIRE SEE          lib\ext\disasm.f
-
-STARTLOG
-
-SEE TST
-
-ENDLOG
