@@ -1,7 +1,20 @@
 \ stenoforth32
 
+\ position(1..n)  -- char
+m: pc>  a 1- + C@ ;
+\ char position -- flag
+m: cp?  pc> = ;
+
+CREATE StrOut 200 ALLOT 0 VALUE dso
+: dso++ dso 1+ TO dso ;
+: $+  StrOut dso + C! dso++ ;
+: s$+ >R StrOut dso + R@ MOVE R> dso + TO dso BL $+ ;
+: n$+ S>D (D.) s$+ BL $+ ;
+
 m: rec: 0 WARNING ! : NOTFOUND u\ a\ ;
 m: gen: 0= IF a u NOTFOUND EXIT THEN ;
+
+
 
 \ непоср.значение переменной name' на стек
 
