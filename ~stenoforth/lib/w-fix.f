@@ -60,6 +60,8 @@ SYNONYM lshift       LSHIFT
 SYNONYM rshift       RSHIFT
 SYNONYM dump         DUMP
 SYNONYM \eof         \EOF
+SYNONYM s>d          S>D
+SYNONYM (d.}         (D.)
 
 SYNONYM true         TRUE
 SYNONYM false        FALSE

@@ -17,8 +17,8 @@ m: I+  ( n -- )  R@ + RP@ ! ; \ макрос - увеличение счетчи
 : DXOR    ( d1 d2 -- d3)  D=@P $ 8 Pa $ -4 A^@P @P^D ;
 : DAND    ( d1 d2 -- d3)  D=@P $ 8 Pa $ -4 A&@P @P&D ;
 : DINVERT ( d1 -- d2 )    @P~ A~ ;
-: DLSHIFT ( d n -- 'd ) $ 4 D=@P $ 20 C=# C-A D>> C=A @P<< $ 4 @P<< @P|D DROP ;
-: DRSHIFT ( d n -- 'd ) D=@P $ 20 C=# C-A D<< C=A @P>> $ 4 @P>> $ 4 @P|D DROP ;
+: DLSHIFT ( d n -- 'd ) $ 4 D=@P $ 32 C=# C-A D>> C=A @P<< $ 4 @P<< @P|D DROP ;
+: DRSHIFT ( d n -- 'd ) D=@P $ 32 C=# C-A D<< C=A @P>> $ 4 @P>> $ 4 @P|D DROP ;
 : D0<>    ( d -- f ) D0= INVERT ;
 : 1-!     ( addr --) @A-- DROP ;
 : -!      ( n addr -- ) D=@P -D @A+D $ 4 A=@P $ 8 Pa ;
