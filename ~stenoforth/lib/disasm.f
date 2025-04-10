@@ -1600,16 +1600,16 @@ VARIABLE  COUNT-LINE
 I: (SEE) ( CFA --)
 DUP FIND-REST-END ['] REST-AREA CATCH DROP ;
 
-: SEE       ( "name" -- )
-    ' DUP WordByAddr CR CR ." CODE " TYPE ` (SEE)
+\ : SEE       ( "name" -- )
+\    ' DUP WordByAddr CR CR ." CODE " TYPE ` (SEE)
   \  DUP FIND-REST-END ['] REST-AREA CATCH DROP
-;
+\ ;
 
 \ : see       ( "name" -- )
 \     ' DUP WordByAddr CR CR ." CODE " TYPE ` (SEE)
 \   \  DUP FIND-REST-END ['] REST-AREA CATCH DROP
 \ ;
-: see ' dup 0 | a\ A\ n\ |
+: SEE ' dup 0 | a\ A\ n\ |
   cr A wordbyaddr type cr
   begin
    A INST -> A n 1+ -> n  cr
@@ -1634,16 +1634,5 @@ BASE !
 WARNING !
 
 \ .(  Ok) CR
-\EOF
-: see ' dup 0 | a$ A$ n$ |
-  cr ." Code " A wordbyaddr type cr
-  begin
-   A INST -> A n 1+ -> n  cr
-   A c@ 0xC3 =
-     if A INST cr
-        A a - 1+ . ." bytes, "
-        n 1+ . ." instructions"
-        drop cr exit
-     then
-  again
-;
+SYNONYM dis DIS
+SYNONYM see SEE
