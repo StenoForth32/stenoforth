@@ -63,6 +63,7 @@ SYNONYM \eof         \EOF
 SYNONYM s>d          S>D
 SYNONYM (d.}         (D.)
 
+
 SYNONYM true         TRUE
 SYNONYM false        FALSE
 SYNONYM if           IF
@@ -165,6 +166,7 @@ SYNONYM warning      WARNING
 
 SYNONYM s,           S,
 SYNONYM s"           S"
+SYNONYM .s"          .S"
 SYNONYM abort"       ABORT"
 SYNONYM nextword     NextWord
 SYNONYM wordbyaddr   WordByAddr

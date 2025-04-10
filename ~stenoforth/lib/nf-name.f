@@ -5,11 +5,11 @@
   IF a u NOTFOUND EXIT THEN
   0 a 1+ a u + 2- DO 8 LSHIFT I C@ + -1 +LOOP STATE @ IF LIT, THEN  \ генератор
 ;
-: NOTFOUND { a u | [ 20 ] str } \ -- a u
-  a C@ [CHAR] . = a u + 1- C@ [CHAR] . = AND u 3 11 1+ WITHIN AND 0= \ распознаватель
-  IF a u NOTFOUND EXIT THEN a 1+ str u 2- MOVE
-  STATE @ IF str u 2- SLIT, ELSE str u 2- THEN  \ генератор
-;
+\ : NOTFOUND { a u | [ 20 ] str } \ -- a u
+\   a C@ [CHAR] . = a u + 1- C@ [CHAR] . = AND u 3 11 1+ WITHIN AND 0= \ распознаватель
+\   IF a u NOTFOUND EXIT THEN a 1+ str u 2- MOVE
+\  STATE @ IF str u 2- SLIT, ELSE str u 2- THEN  \ генератор
+\ ;
 : LOAD-LEX \ a u --
    S, BL C,    \ 0 C, ******
 ;

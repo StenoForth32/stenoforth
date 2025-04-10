@@ -28,7 +28,7 @@ REQUIRE instructions ~stenoforth\lib\instructions.f \ модуль слов-ин
 REQUIRE closure      ~stenoforth\lib\closure.f      \ расширение для замыканий и для формирования литеральных слов
 
 REQUIRE valuenames   ~stenoforth\lib\c-fix.f        \ модуль синонимов для сжатия слов для работы с фикс.точкой - разряднось 32
-REQUIRE mfvaluenames ~stenoforth\lib\c-flo.f        \ модуль синонимов для сжатия слов для работы с плав.точкой 
+REQUIRE mfvaluenames ~stenoforth\lib\c-flo.f        \ модуль синонимов для сжатия слов для работы с плав.точкой
 REQUIRE dsynonyms    ~stenoforth\lib\c-fixd.f       \ модуль синонимов для сжатия слов для работы с фикс.точкой - разрядность 64
 
 REQUIRE SYNONYM      ~stenoforth\lib\synonym.f
@@ -36,7 +36,7 @@ REQUIRE SYNONYM      ~stenoforth\lib\synonym.f
 REQUIRE 2VARIABLE    lib\include\double.f
 REQUIRE immediate    ~stenoforth\lib\w-fix.f
 REQUIRE f.           ~stenoforth\lib\r-flo.f
-REQUIRE [type]       ~stenoforth\math\matr.f        \ операции над матрицами с числами с фикс. точкой 
+REQUIRE [type]       ~stenoforth\math\matr.f        \ операции над матрицами с числами с фикс. точкой
 REQUIRE SEE          ~stenoforth\lib\disasm.f       \ доработанный SEE(дает размер кода и число инструкций)
 REQUIRE s-inv        ~stenoforth\lib\string.f
 
