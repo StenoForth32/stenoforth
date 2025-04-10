@@ -182,6 +182,8 @@ SYNONYM definitions  DEFINITIONS
 SYNONYM previous     PREVIOUS
 SYNONYM context      CONTEXT
 SYNONYM current      CURRENT
+SYNONYM module:      MODULE:
+SYNONYM ;module      ;MODULE
 SYNONYM notfound     NOTFOUND
 SYNONYM recgen       NOTFOUND
 SYNONYM words        WORDS
@@ -192,6 +194,7 @@ SYNONYM name>c       NAME>C
 SYNONYM seet         SEET
 SYNONYM set-opt      SET-OPT
 SYNONYM dis-opt      DIS-OPT
+SYNONYM dis          DIS
 
 SYNONYM exit         EXIT
 SYNONYM task:        TASK:
