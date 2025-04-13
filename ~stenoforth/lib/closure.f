@@ -5,20 +5,20 @@ m: pc>  a 1- + C@ ;
 \ char position -- flag
 m: cp?  pc> = ;
 
-CREATE StrOut 256 ALLOT 0 VALUE dso
+CREATE StrOut 255 ALLOT 0 VALUE dso
 : dso++ dso 1+ TO dso ;
 : $+  StrOut dso + C! dso++ ;
-: s$+ >R StrOut dso + R@ MOVE R> dso + TO dso BL $+ ;
+: s$+ >R StrOut dso + R@ MOVE R> dso + TO dso ;
 : n$+ S>D (D.) s$+ BL $+ ;
 : tt-xt ( any xt -- any ) STATE @ IF COMPILE, ELSE EXECUTE THEN ;
-I: .S"  ( "ccc<quote>" -- |sd ) ['] S" EXECUTE  ['] s$+ tt-xt ;
+I: $"  ( "ccc<quote>" -- |sd ) ['] S" EXECUTE  ['] s$+ tt-xt ;
 
 m: rec: 0 WARNING ! : NOTFOUND u\ a\ ;
-m: gen: 0= IF a u NOTFOUND EXIT THEN ;
-
-rec: '.' 1 cp? '.' u cp? AND
-gen: a 1+ u 2- STATE @ IF SLIT, POSTPONE s$+ ELSE s$+ THEN ;
-
+m: gen: 0= IF a u NOTFOUND EXIT THEN
+   StrOut 255 ERASE 0 TO dso ;
+\ state @ ( false - execute  true - evaluate )
+m: erg StrOut dso HERE h\ EVALUATE
+   STATE @ 0= IF ret, h EXECUTE h DP ! THEN ;
 
 
 \ непоср.значение переменной name' на стек
