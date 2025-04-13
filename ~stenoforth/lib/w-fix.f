@@ -166,7 +166,6 @@ SYNONYM warning      WARNING
 
 SYNONYM s,           S,
 SYNONYM s"           S"
-SYNONYM .s"          .S"
 SYNONYM abort"       ABORT"
 SYNONYM nextword     NextWord
 SYNONYM wordbyaddr   WordByAddr
