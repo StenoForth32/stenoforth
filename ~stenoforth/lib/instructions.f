@@ -22,18 +22,23 @@ MODULE: instructions
 : t=B    0xC38B W, ;
 : t=C    0xC18B W, ;
 : t=D    0xC28B W, ;
+: t=S    0xC68B W, ;
 : t=c    0x458B W, C, ;
 : t=[t   0x008B W, ;
+: [t=t   0x0089 W, ;
 : [t=B   0x1889 W, ;
 : [t=bB  0x1888 W, ;
 : [t=C   0x0889 W, ;
 : [t=bC  0x0888 W, ;
 : [t=D   0x1089 W, ;
 : [t=bD  0x1088 W, ;
+: [t=S   0x3089 W, ;
+: [t=bS  0x3088 W, ;
 
 : [t+B   0x1801 W, ;
 : [t+C   0x0801 W, ;
 : [t+D   0x1001 W, ;
+: [t+S   0x3001 W, ;
 
 : B=b[t  0xF C, 0x18B6 W, ;
 : B=b[B  0xF C, 0x1BB6 W, ;
@@ -83,8 +88,10 @@ MODULE: instructions
 : c=-1   0x45C7 W, C, -1 , ;
 : c=t    0x4589 W, C, ;
 : c=B    0x5D89 W, C, ;
+: c=C    0x4D89 W, C, ;
 : c=D    0x5589 W, C, ;
-
+: c=S    0x7589 W, C, ;
+: c=#    0x45C7 W, C, , ;
 : LB=c   0xF C, 0x5D4C W, C, ;
 : GB=c   0xF C, 0x5D4F W, C, ;
 : LB=D   0xF C, 0xDA4C W, ;
@@ -140,6 +147,11 @@ MODULE: instructions
 : C-c    0x4D2B W, C, ;
 : C*c    0x0F C, 0x4DAF W, C, ;
 
+: D+c    0x5503 W, C, ;
+: D-c    0x552B W, C, ;
+: D*c    0x0F C, 0x55AF W, C, ;
+
+: S=c    0x758B W, C, ;
 : S+c    0x7503 W, C, ;
 : S-c    0x752B W, C, ;
 : S*c    0x0F C, 0x75AF W, C, ;
@@ -164,8 +176,6 @@ MODULE: instructions
 : c|t    0x4509 W, C, ;
 : c+t    0x4501 W, C, ;
 : c-t    0x4529 W, C, ;
-
-: D-c    0x552B W, C, ;
 
 : B^#    0xF381 W, , ;
 : B^c    0x5D33 W, C, ;
@@ -216,8 +226,6 @@ MODULE: instructions
 : Cc<<   0x65D3 W, C, ;
 : Cc>>   0x6DD3 W, C, ;
 
-: D-t    0xD02B W, ;
-
 : Lt+1   0x408D W, 1 C, ;
 : Lt-1   0x408D W, 0xFF C, ;
 : Lt+2   0x408D W, 0x02 C, ;
@@ -226,7 +234,21 @@ MODULE: instructions
 : Lt/2   0xF8D1 W, ;
 : Lt=D   0x0F C, 0xC24C W, ;
 
+: B+t    0xD803 W, ;
+: B-t    0xD82B W, ;
 : B*t    0xAF0F W, 0xD8 C, ;
+
+: C+t    0xC803 W, ;
+: C-t    0xC82B W, ;
+: C*t    0xAF0F W, 0xC8 C, ;
+
+: D+t    0xD003 W, ;
+: D-t    0xD02B W, ;
+: D*t    0xAF0F W, 0xD0 C, ;
+
+: S+t    0xF003 W, ;
+: S-t    0xF02B W, ;
+: S*t    0xAF0F W, 0xF0 C, ;
 
 : c2-    0x6D83 W, C, 2 C, ;
 : c2+    0x4583 W, C, 2 C, ;

@@ -184,7 +184,8 @@ SYNONYM current      CURRENT
 SYNONYM module:      MODULE:
 SYNONYM ;module      ;MODULE
 SYNONYM notfound     NOTFOUND
-SYNONYM recgen       NOTFOUND
+SYNONYM sfind        SFIND
+
 SYNONYM words        WORDS
 SYNONYM id.          ID.
 SYNONYM name>        NAME>

@@ -68,7 +68,7 @@ m: ~ DINVERT ;
 m: \ CR ;
 m: ? IF ;
 m: _ .BL ;
-m: : to ;
+m: : -> ;
 m: ; EXIT ;
 m: 1 с ; m: 2 т ; m: 3 у ; m: 4 ф ; m: 5 х ; m: 6 ц ; m: 7 ч ; m: 8 ш ; m: 9 щ ;
 EXPORT

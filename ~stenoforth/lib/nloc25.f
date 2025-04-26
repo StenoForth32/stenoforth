@@ -40,7 +40,7 @@ m: adr@ [ 0xC78B W, udhere 0xC081 W, , ] ;  \ mov eax edi  add eax udhere
 \ c-addr u s  -- c-addr u
 
 m: nf1-exit \ -ROT 2DUP + 1- C@ -ROT 2SWAP <> IF NOTFOUND EXIT THEN
-a u + 1- C@ s <> IF a u NOTFOUND EXIT THEN a u
+a u + 1- C@ s <>  IF a u NOTFOUND EXIT THEN a u
 a u + 1- C@
 CASE
 ')' OF   0 ENDOF \ variable-addres  4 or 8 bytes
@@ -134,7 +134,7 @@ USER st-wr  0 st-wr !
 \ переменные однопоточные
 : NOTFOUND ( a u --  ) \ 2variable variable    name)
   ')' { a u s } nf1-exit 1- headl  L{ ldhere LIT, RET, ldhere 2 CELLS + TO ldhere }L ;
-: NOTFOUND ( a u --  ) \ value   name!
+: NOTFOUND ( a u --  ) \ value   name\
   '\' { a u s } nf1-exit 1- headl ldhere LIT, ` ! L{ ldhere LIT, ` @ RET, ldhere LIT, ` ! RET, ldhere 1 CELLS + TO ldhere }L
 ;
 : NOTFOUND ( a u --  ) \ 2value  name!d

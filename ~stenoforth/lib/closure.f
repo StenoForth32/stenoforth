@@ -17,12 +17,18 @@ m: rec: 0 WARNING ! : NOTFOUND u\ a\ ;
 m: gen: 0= IF a u NOTFOUND EXIT THEN
    StrOut 255 ERASE 0 TO dso ;
 \ state @ ( false - execute  true - evaluate )
-m: erg StrOut dso HERE h\ EVALUATE
+: erg HERE h\ EVALUATE
+   STATE @ 0= IF ret, h EXECUTE h DP ! THEN ;
+: esd StrOut dso HERE h\ EVALUATE
    STATE @ 0= IF ret, h EXECUTE h DP ! THEN ;
 
+\ хвостовая оптимизация ( name; - последнее слово в определении через ':' окончить символом ';' )
+rec: 0. xt\ rj\ a u + 1- c@ ';' = a u 1- sfind dup
+     if -> rj -> xt true else 2drop drop false then and
+gen: rj -1 = if   0xE9 C, xt here - 4 - , s" (;"
+             else xt execute s" ;" then evaluate ;
 
 \ непоср.значение переменной name' на стек
-
 rec: a C@ ''' <> a u + 1- C@ ''' = AND
 gen: [ 16 ] ar] lvoc a u 1- lsearch 2DROP 7 + C@ typ\
      a ar u 1- MOVE '`' ar u + 1- C! ar u EVALUATE

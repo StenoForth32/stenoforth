@@ -21,7 +21,7 @@
 \   XMM0     XMM1     XMM2     XMM3     XMM4     XMM5     XMM6     XMM7
 0 ITO X0 1 ITO X1 2 ITO X2 3 ITO X3 4 ITO X4 5 ITO X5 6 ITO X6 7 ITO X7
 
-I: $ ( HEX) NextWord NUMBER? DROP D>S >CS ( DECIMAL) ;  \ ******** ����� hex
+I: $ ( HEX) NextWord NUMBER? DROP D>S >CS ( DECIMAL) ;  \ decimal
 
 : 1R  CS>  TO R1 C, ;
 : 1R1 CS@ CS> TO R1 TO R2 C, ;
@@ -406,7 +406,7 @@ I: L7 lab7 @ xln7 count7 count+ ; I: L7: DP @ lab7 ! ; I: L8 lab8 @ xln8 count8 
 : L;  CTL0 XN IF XN 1- TO XN [again] EXIT THEN POSTPONE ; ;
 : L-; CTL0 XN IF XN 1- TO XN [again] EXIT THEN noret ;
 I: ;  $LABEL IF L;  ELSE POSTPONE ; THEN ;
-I: -; $LABEL IF L-; ELSE noret THEN ;
+I: (; $LABEL IF L-; ELSE noret THEN ;
 \ TZRS: F-флаг равен 1, f-флаг равен 0, F1|F2-по ИЛИ,f1F2-по И, = - равенство, # - неравенство.
 
 0 VALUE JRCZ
