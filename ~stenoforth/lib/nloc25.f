@@ -157,7 +157,6 @@ USER st-wr  0 st-wr !
      ` FLOAT>DATA32 ` usn! ` DROP RET,
      udhere 1 CELLS + TO udhere }L
 ;
-: ld-align ldhere ALIGNED TO ldhere ;
 \ arrays are single threaded
 : NOTFOUND ( a u --  ) \ [ 20 ] arr]
   ']' { a u s } nf1-exit 1- headl
