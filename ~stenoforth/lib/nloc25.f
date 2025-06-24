@@ -1,8 +1,8 @@
 \ stenoforth32
-\                            name             xt          typ
-\ устройство словаря: byte-0 bytes-lex byte-0 addr byte-0 byte-typ byte-0
+\                              name             xt          typ
+\ dictionary structure: byte-0 bytes-lex byte-0 addr byte-0 byte-typ byte-0
 
-\ локальное именование
+\ local naming
 
 CREATE lcode 0x100000 ALLOT lcode VALUE dpl
 CREATE ldate 0x100000 ALLOT ldate VALUE ldhere
@@ -12,7 +12,7 @@ VARIABLE XHERE  VARIABLE xdpl
 USER-CREATE alvoc  lenlvoc USER-ALLOT  0 alvoc C!
 USER lhere
 USER axtloc
-USER dtyp  0 dtyp !   \ тип переменной
+USER dtyp  0 dtyp !   \ variable type
 USER locxt 0 locxt !
 USER iol   0 iol !
 
@@ -25,7 +25,7 @@ m: adr@ [ 0xC78B W, udhere 0xC081 W, , ] ;  \ mov eax edi  add eax udhere
 
 \ -- c-addr u
 : lvoc   alvoc lenlvoc ;  lvoc ERASE 1 lhere !
-\ c-addr u -- axtloc \ здесь u на 1 или 2 символа меньше чем исходное имя с суффиксом типа в 1 или 2 символа
+\ c-addr u -- axtloc \ here u is 1 or 2 characters less than the original name with a type suffix of 1 or 2 characters
 : lname, { a u | axt -- axtloc }
   lhere @ TO axt
   a axt u MOVE   0 axt u + C!
@@ -68,18 +68,19 @@ ENDCASE
 lhere @ u + 4 + DUP dtyp ! C! 0 lhere @ u + 5 + C!
 ;
 
-: +: : ;          \ расширение области видимости словаря предыдущих определений для следующего определения
-: : init-lvoc : ; \ стирание словаря предыдущих определений по следующему определению через ':'
+: +: : ;          \ extending the scope of the dictionary of previous definitions to the next definition
+: : init-lvoc : ; \ erase dictionary of previous definitions by next definition via ':'
 
 : NOTFOUND ( a u -- ) '(' { a u s } nf1-exit 1- headl L{ ;
 : ) ( -- )  RET, }L ; IMMEDIATE                                                         \ name(  ) code
 : NOTFOUND ( a u -- ) '"' { a u s } nf1-exit 1- headl L{ LOAD-TEXT RET, }L ;            \ name"  " string
 : NOTFOUND ( a u -- ) '[' { a u s } nf1-exit 1- headl L{ LOAD-TEXT ` EVALUATE RET, }L ; \ name[  ] macros
 
-\ замыкания                                                                             \ closure
-: NOTFOUND ( a u -- ) '{' { a u s } nf1-exit 1- headl L{ LOAD-TEXT ` xts RET, }L ;      \ name{  текст замыкания }
-: x) ( -- )  RET, }L axtloc @ @ LIT, ; IMMEDIATE                                        \ name( ... x) выдает xt
-\ поиск в словаре определения                                                                                        \ name дальше не используется
+\ closures
+: NOTFOUND ( a u -- ) '{' { a u s } nf1-exit 1- headl L{ LOAD-TEXT ` xts RET, }L ;      \ name{  closure text }
+: x) ( -- )  RET, }L axtloc @ @ LIT, ; IMMEDIATE           \ name( ... x) xt gives out ( name is not used further)
+
+\ search dictionary definition
 : lsearch { a u a1 u1 \ a2 u2 fl -- a u 0|1 }
    0 TO fl BEGIN a u a1 u1 SEARCH >R TO u2 TO a2
                  R> a2 u1 + C@ 0= a2 1- C@ 0= AND AND
@@ -89,14 +90,13 @@ lhere @ u + 4 + DUP dtyp ! C! 0 lhere @ u + 5 + C!
                  THEN
        fl UNTIL
 ;
-: l' ( l' name -- xt ) TRUE locxt ! ; IMMEDIATE \ дает xt для name
-
+: l' ( l' name -- xt ) TRUE locxt ! ; IMMEDIATE \ gives xt for name
 USER st-wr  0 st-wr !
 : -> 1 st-wr ! ; IMMEDIATE
 
-: NOTFOUND \ a u --  компиляция из локального словаря в глобальный словарь
+: NOTFOUND \ a u --  compilation from local dictionary to global dictionary
   OVER     \ a u a
-  C@       \ 1-й символ имени
+  C@       \ 1st name symbol
   '`' = IF 1 /STRING TRUE locxt ! THEN \ a u
   lvoc     \ a u av uv
   2OVER    \ a u av uv a u
@@ -131,54 +131,55 @@ USER st-wr  0 st-wr !
        THEN
   THEN 0 st-wr !
 ;
-\ переменные однопоточные
-: NOTFOUND ( a u --  ) \ 2variable variable    name)
+\ variables are single threaded
+: NOTFOUND ( a u --  ) \ 2variable variable    "name)"
   ')' { a u s } nf1-exit 1- headl  L{ ldhere LIT, RET, ldhere 2 CELLS + TO ldhere }L ;
-: NOTFOUND ( a u --  ) \ value   name\
+: NOTFOUND ( a u --  ) \ value   "name\"
   '\' { a u s } nf1-exit 1- headl ldhere LIT, ` ! L{ ldhere LIT, ` @ RET, ldhere LIT, ` ! RET, ldhere 1 CELLS + TO ldhere }L
 ;
-: NOTFOUND ( a u --  ) \ 2value  name!d
+: NOTFOUND ( a u --  ) \ 2value  "name!d"
   '!d' { a u s } nf2-exit 2- headl ldhere LIT, ` 2! L{ ldhere LIT, ` 2@ RET, ldhere LIT, ` 2! RET, ldhere 2 CELLS + TO ldhere }L
 ;
-: NOTFOUND ( a u --  ) \ fvalue  name,
+: NOTFOUND ( a u --  ) \ fvalue  "name$"
   '$' { a u s } nf1-exit 1- headl ` FLOAT>DATA ldhere LIT, ` 2! ( 4 ltyp !)
   L{ ldhere LIT, ` 2@ ` DATA>FLOAT RET, ` FLOAT>DATA ldhere LIT, ` 2! RET, ldhere 2 CELLS + TO ldhere }L
 ;
-\ переменные многопоточные
-: NOTFOUND ( a u --  ) \ value   name:
+\ variables multithreaded
+: NOTFOUND ( a u --  ) \ value   "name:"
   ':' { a u s } nf1-exit 1- headl ` usn! ` DROP \ 2 ltyp !
   L{ ` DUP  ` usn@ RET,
      ` usn! ` DROP RET,
      udhere 1 CELLS + TO udhere }L
 ;
-: NOTFOUND ( a u --  ) \ value   name;
+: NOTFOUND ( a u --  ) \ value   "name;"
   ';' { a u s } nf1-exit 1- headl  ` FLOAT>DATA32 ` usn! ` DROP \ 5 ltyp !
   L{ ` DUP ` usn@ ` DATA>FLOAT32  RET,
      ` FLOAT>DATA32 ` usn! ` DROP RET,
      udhere 1 CELLS + TO udhere }L
 ;
-\ массивы однопоточные
-: NOTFOUND ( a u --  ) \   [ 20 ] arr]
+: ld-align ldhere ALIGNED TO ldhere ;
+\ arrays are single threaded
+: NOTFOUND ( a u --  ) \ [ 20 ] arr]
   ']' { a u s } nf1-exit 1- headl
-  L{ ldhere LIT, RET, ldhere + TO ldhere }L
+  L{ ldhere ALIGNED TO ldhere ldhere LIT, RET, ldhere + TO ldhere }L
 ;
-\ массивы многопоточные
-: NOTFOUND ( a u --  ) \   [ 20 ] arr]u
+\ arrays multithreaded
+: NOTFOUND ( a u --  ) \ [ 20 ] arr]u
   '}' { a u s } nf1-exit 1- headl
   L{ ` DUP ` adr@ RET,
   udhere + TO udhere }L
 ;
-\ исполнение из форта или если там нет, то из лок. словаря
+\ execution from the forth or if not there, then from the local dictionary
 : NOTFOUND ( c-addr u -- ) { a u | [ 16 ] arr }
  a u + 1- C@ '`' = u 1 > AND 0= IF a u NOTFOUND EXIT THEN
- a u 1- SFIND IF EXECUTE \ ищем в текущем глобальном словаре
-              ELSE lvoc 2SWAP lsearch  \ ищем в локальном словаре
+ a u 1- SFIND IF EXECUTE \ search in the current global dictionary
+              ELSE lvoc 2SWAP lsearch  \ search in local dictionary
                    IF + 1+ @ EXECUTE
                    ELSE TYPE SPACE ." not found " CR
                    THEN
               THEN
 ;
-\ распознавание чисел с плавающей точкой
+\ floating point number recognition  ( "1,0"  "-123,045" )
 : NOTFOUND  ( c-addr u -- ) { a u | sq sz pt [ 20 ] an }
   a u OVER + SWAP ?DO I C@ '0' ':' WITHIN IF sq 1+ TO sq THEN
   I C@ ',' = IF I a - TO pt sz 1+ TO sz THEN LOOP
@@ -190,9 +191,3 @@ I: | NextWord 2DUP + 1- C@ '|' <> IF RECURSE EVALUATE ELSE 2DROP THEN ;
 
 : .s CR DEPTH .SN CR S0 @ SP! ;
 : .sd DEPTH 0 DO I ROLL LOOP DEPTH 0 DO SWAP D. 2 +LOOP CR ;
-
-
-
-
-
-                 
