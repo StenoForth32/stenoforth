@@ -133,15 +133,18 @@ USER st-wr  0 st-wr !
 ;
 \ variables are single threaded
 : NOTFOUND ( a u --  ) \ 2variable variable    "name)"
-  ')' { a u s } nf1-exit 1- headl  L{ ldhere LIT, RET, ldhere 2 CELLS + TO ldhere }L ;
+  ')' { a u s } nf1-exit 1- headl ldhere ALIGNED TO ldhere  
+  L{ ldhere LIT, RET, ldhere 2 CELLS + TO ldhere }L ;
 : NOTFOUND ( a u --  ) \ value   "name\"
-  '\' { a u s } nf1-exit 1- headl ldhere LIT, ` ! L{ ldhere LIT, ` @ RET, ldhere LIT, ` ! RET, ldhere 1 CELLS + TO ldhere }L
+  '\' { a u s } nf1-exit 1- headl ldhere ALIGNED TO ldhere ldhere LIT, ` ! 
+  L{ ldhere LIT, ` @ RET, ldhere LIT, ` ! RET, ldhere 1 CELLS + TO ldhere }L
 ;
 : NOTFOUND ( a u --  ) \ 2value  "name!d"
-  '!d' { a u s } nf2-exit 2- headl ldhere LIT, ` 2! L{ ldhere LIT, ` 2@ RET, ldhere LIT, ` 2! RET, ldhere 2 CELLS + TO ldhere }L
+  '!d' { a u s } nf2-exit 2- headl ldhere ALIGNED TO ldhere ldhere LIT, ` 2! 
+  L{ ldhere LIT, ` 2@ RET, ldhere LIT, ` 2! RET, ldhere 2 CELLS + TO ldhere }L
 ;
 : NOTFOUND ( a u --  ) \ fvalue  "name$"
-  '$' { a u s } nf1-exit 1- headl ` FLOAT>DATA ldhere LIT, ` 2! ( 4 ltyp !)
+  '$' { a u s } nf1-exit 1- headl ` FLOAT>DATA ldhere ALIGNED TO ldhere ldhere LIT, ` 2! ( 4 ltyp !)
   L{ ldhere LIT, ` 2@ ` DATA>FLOAT RET, ` FLOAT>DATA ldhere LIT, ` 2! RET, ldhere 2 CELLS + TO ldhere }L
 ;
 \ variables multithreaded
@@ -159,8 +162,8 @@ USER st-wr  0 st-wr !
 ;
 \ arrays are single threaded
 : NOTFOUND ( a u --  ) \ [ 20 ] arr]
-  ']' { a u s } nf1-exit 1- headl
-  L{ ldhere ALIGNED TO ldhere ldhere LIT, RET, ldhere + TO ldhere }L
+  ']' { a u s } nf1-exit 1- headl ldhere ALIGNED TO ldhere
+  L{ ldhere LIT, RET, ldhere + TO ldhere }L
 ;
 \ arrays multithreaded
 : NOTFOUND ( a u --  ) \ [ 20 ] arr]u
