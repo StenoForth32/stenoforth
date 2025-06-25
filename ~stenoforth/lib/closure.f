@@ -1,9 +1,9 @@
 \ stenoforth32
 
 \ position(1..n)  -- char
-m: pc>  a 1- + C@ ;
-\ char position -- flag
-m: cp?  pc> = ;
+m: pos>char  a 1- + C@ ;
+\ position char -- flag
+m: pos-char? swap pos>char = ;
 
 CREATE StrOut 255 ALLOT 0 VALUE dso
 : dso++ dso 1+ TO dso ;
@@ -21,12 +21,6 @@ m: gen: 0= IF a u NOTFOUND EXIT THEN
    STATE @ 0= IF ret, h EXECUTE h DP ! THEN ;
 : esd StrOut dso HERE h\ EVALUATE
    STATE @ 0= IF ret, h EXECUTE h DP ! THEN ;
-
-\ хвостовая оптимизация ( name; - последнее слово в определении через ':' окончить символом ';' )
-rec: 0. xt\ rj\ a u + 1- c@ ';' = a u 1- sfind dup
-     if -> rj -> xt true else 2drop drop false then and
-gen: rj -1 = if   0xE9 C, xt here - 4 - , s" (;"
-             else xt execute s" ;" then evaluate ;
 
 \ непоср.значение переменной name' на стек
 rec: a C@ ''' <> a u + 1- C@ ''' = AND
